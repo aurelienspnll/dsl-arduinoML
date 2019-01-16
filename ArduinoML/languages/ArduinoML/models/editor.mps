@@ -168,6 +168,9 @@
           <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
         </node>
         <node concept="l2Vlx" id="7LYDSxsuQQR" role="2iSdaV" />
+        <node concept="3F0ifn" id="6Sh2TuqLpOh" role="3EZMnx">
+          <property role="3F0ifm" value="{" />
+        </node>
       </node>
       <node concept="2iRkQZ" id="7LYDSxsuQQI" role="2iSdaV" />
       <node concept="3EZMnI" id="7LYDSxsuQS8" role="3EZMnx">
@@ -187,6 +190,9 @@
           <ref role="1NtTu8" to="cmsa:1HCekCgxx_x" resolve="transition" />
         </node>
         <node concept="l2Vlx" id="7LYDSxsuQT1" role="2iSdaV" />
+      </node>
+      <node concept="3F0ifn" id="6Sh2TuqLpOl" role="3EZMnx">
+        <property role="3F0ifm" value="}" />
       </node>
     </node>
   </node>
