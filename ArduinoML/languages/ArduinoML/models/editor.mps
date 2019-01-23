@@ -186,7 +186,7 @@
         <node concept="VPM3Z" id="7LYDSxsuQSY" role="3F10Kt" />
         <node concept="3XFhqQ" id="7LYDSxsuQTi" role="3EZMnx" />
         <node concept="3F2HdR" id="7$$bovwXIFo" role="3EZMnx">
-          <ref role="1NtTu8" to="cmsa:1HCekCgxx_x" resolve="transition" />
+          <ref role="1NtTu8" to="cmsa:7$$bovwYZnJ" resolve="notes" />
           <node concept="2iRkQZ" id="7$$bovwXIFr" role="2czzBx" />
           <node concept="VPM3Z" id="7$$bovwXIFs" role="3F10Kt" />
         </node>
@@ -195,6 +195,37 @@
       <node concept="3F0ifn" id="6Sh2TuqLpOl" role="3EZMnx">
         <property role="3F0ifm" value="}" />
       </node>
+      <node concept="3EZMnI" id="7$$bovwYZqX" role="3EZMnx">
+        <node concept="VPM3Z" id="7$$bovwYZqZ" role="3F10Kt" />
+        <node concept="3XFhqQ" id="7$$bovwYZry" role="3EZMnx" />
+        <node concept="3F2HdR" id="7$$bovwYZrC" role="3EZMnx">
+          <ref role="1NtTu8" to="cmsa:1HCekCgxx_x" resolve="transition" />
+          <node concept="2iRkQZ" id="7$$bovwYZrF" role="2czzBx" />
+          <node concept="VPM3Z" id="7$$bovwYZrG" role="3F10Kt" />
+        </node>
+        <node concept="l2Vlx" id="7$$bovwYZr2" role="2iSdaV" />
+      </node>
+    </node>
+  </node>
+  <node concept="24kQdi" id="7$$bovwYlgV">
+    <ref role="1XX52x" to="cmsa:7$$bovwYlgK" resolve="Sound" />
+    <node concept="3EZMnI" id="7$$bovwYlgX" role="2wV5jI">
+      <node concept="1iCGBv" id="7$$bovwYlhz" role="3EZMnx">
+        <ref role="1NtTu8" to="cmsa:7LYDSxsuhSh" resolve="actuator" />
+        <node concept="1sVBvm" id="7$$bovwYlh_" role="1sWHZn">
+          <node concept="3F0A7n" id="7$$bovwYlhK" role="2wV5jI">
+            <property role="1Intyy" value="true" />
+            <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+          </node>
+        </node>
+      </node>
+      <node concept="3F0ifn" id="7$$bovwYlhS" role="3EZMnx">
+        <property role="3F0ifm" value=" play " />
+      </node>
+      <node concept="3F0A7n" id="7$$bovwYli4" role="3EZMnx">
+        <ref role="1NtTu8" to="cmsa:7$$bovwYlgL" resolve="note" />
+      </node>
+      <node concept="l2Vlx" id="7$$bovwYlh0" role="2iSdaV" />
     </node>
   </node>
 </model>

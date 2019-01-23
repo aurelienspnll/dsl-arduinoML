@@ -14,8 +14,9 @@ public final class LanguageConceptSwitch {
   public static final int App = 2;
   public static final int Brick = 3;
   public static final int Sensor = 4;
-  public static final int State = 5;
-  public static final int Transition = 6;
+  public static final int Sound = 5;
+  public static final int State = 6;
+  public static final int Transition = 7;
 
   public LanguageConceptSwitch() {
     LanguageConceptIndexBuilder builder = new LanguageConceptIndexBuilder(0x350aa42ef9c440ddL, 0x82b2052371c06126L);
@@ -24,6 +25,7 @@ public final class LanguageConceptSwitch {
     builder.put(0x1b68394a1081bb15L, App);
     builder.put(0x1b68394a1081bb0eL, Brick);
     builder.put(0x1b68394a1081bb14L, Sensor);
+    builder.put(0x79242d87e0f95430L, Sound);
     builder.put(0x1b68394a10861955L, State);
     builder.put(0x1b68394a10861960L, Transition);
     myIndex = builder.seal();

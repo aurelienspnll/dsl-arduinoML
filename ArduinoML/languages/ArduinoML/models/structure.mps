@@ -121,6 +121,13 @@
       <property role="20lbJX" value="0..n" />
       <ref role="20lvS9" node="1HCekCgxx_v" resolve="Action" />
     </node>
+    <node concept="1TJgyj" id="7$$bovwYZnJ" role="1TKVEi">
+      <property role="IQ2ns" value="8729152039369307631" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="notes" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="7$$bovwYlgK" resolve="Sound" />
+    </node>
     <node concept="1TJgyj" id="1HCekCgxx_x" role="1TKVEi">
       <property role="IQ2ns" value="1974891426869549409" />
       <property role="20lmBu" value="aggregation" />
@@ -180,6 +187,56 @@
       <property role="IQ2nx" value="8970791711877432911" />
       <property role="TrG5h" value="status" />
       <ref role="AX2Wp" node="1HCekCgxx_o" resolve="STATUS" />
+    </node>
+  </node>
+  <node concept="AxPO7" id="7$$bovwYlfU">
+    <property role="TrG5h" value="NOTES" />
+    <ref role="M4eZT" to="tpck:fKAQMTA" resolve="integer" />
+    <node concept="M4N5e" id="7$$bovwYlfV" role="M5hS2">
+      <property role="1uS6qv" value="3830" />
+      <property role="1uS6qo" value="c" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlfW" role="M5hS2">
+      <property role="1uS6qo" value="d" />
+      <property role="1uS6qv" value="3400" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlfZ" role="M5hS2">
+      <property role="1uS6qo" value="e" />
+      <property role="1uS6qv" value="3038" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlg3" role="M5hS2">
+      <property role="1uS6qo" value="f" />
+      <property role="1uS6qv" value="2864" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlg8" role="M5hS2">
+      <property role="1uS6qo" value="g" />
+      <property role="1uS6qv" value="2550" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlge" role="M5hS2">
+      <property role="1uS6qo" value="a" />
+      <property role="1uS6qv" value="2272" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlgl" role="M5hS2">
+      <property role="1uS6qo" value="b" />
+      <property role="1uS6qv" value="2028" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlgt" role="M5hS2">
+      <property role="1uS6qo" value="C" />
+      <property role="1uS6qv" value="1912" />
+    </node>
+    <node concept="M4N5e" id="7$$bovwYlgA" role="M5hS2">
+      <property role="1uS6qo" value="R" />
+      <property role="1uS6qv" value="0" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="7$$bovwYlgK">
+    <property role="EcuMT" value="8729152039369135152" />
+    <property role="TrG5h" value="Sound" />
+    <ref role="1TJDcQ" node="1HCekCgxx_v" resolve="Action" />
+    <node concept="1TJgyi" id="7$$bovwYlgL" role="1TKVEl">
+      <property role="IQ2nx" value="8729152039369135153" />
+      <property role="TrG5h" value="note" />
+      <ref role="AX2Wp" node="7$$bovwYlfU" resolve="NOTES" />
     </node>
   </node>
 </model>

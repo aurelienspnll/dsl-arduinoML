@@ -14,6 +14,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_App;
   private ConceptPresentation props_Brick;
   private ConceptPresentation props_Sensor;
+  private ConceptPresentation props_Sound;
   private ConceptPresentation props_State;
   private ConceptPresentation props_Transition;
 
@@ -56,6 +57,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_Sensor = cpb.create();
         }
         return props_Sensor;
+      case LanguageConceptSwitch.Sound:
+        if (props_Sound == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByReference(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1086195fL, 0x7c7ea7885c791e11L, "actuator", "", "");
+          props_Sound = cpb.create();
+        }
+        return props_Sound;
       case LanguageConceptSwitch.State:
         if (props_State == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
