@@ -26,7 +26,7 @@ def demo1():
             .when("BUTTON").has_value(HIGH).go_to_state("off") \
         .get_contents()
 
-    print app
+    print(app)
 
 def demo2():
     """
@@ -50,7 +50,7 @@ def demo2():
             .when("BUTTON").has_value(HIGH).go_to_state("off")
     """)
 
-    print app2
+    print(app2)
 
 if __name__ == '__main__':
     demo1()

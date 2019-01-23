@@ -2,3 +2,7 @@
 **/*.class
 
 **/workspace.xml
+
+*.pyc
+
+ArduinoML-embedded/.vscode/*
