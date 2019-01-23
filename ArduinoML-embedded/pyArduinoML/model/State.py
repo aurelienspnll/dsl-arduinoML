@@ -1,4 +1,6 @@
 from pyArduinoML.model.NamedElement import NamedElement
+from pyArduinoML.model.Transition import Transition
+from pyArduinoML.model.transition.LogicTransition import LogicTransition
 import SIGNAL
 
 class State(NamedElement):
@@ -17,7 +19,8 @@ class State(NamedElement):
         :return:
         """
         NamedElement.__init__(self, name)
-        self.transition = transition
+        self.transition = []
+        self.transition.append(transition)
         self.actions = actions
 
     def settransition(self, transition):
@@ -26,7 +29,15 @@ class State(NamedElement):
         :param transition: Transition
         :return:
         """
-        self.transition = transition
+        self.transition[0] = transition
+
+    def addtransition(self, transition):
+        """
+        Add the transition
+        :param transition: Transition
+        :return:
+        """
+        self.transition.append(transition)
 
     def setup(self):
         """
@@ -43,8 +54,17 @@ class State(NamedElement):
         rtr += "\tboolean guard =  millis() - time > debounce;\n"
         # generate code for the transition
         transition = self.transition
-        rtr += "\tif (digitalRead(%s) == %s && guard) {\n\t\ttime = millis(); state_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
-               % (transition.sensor.name, SIGNAL.value(transition.value), transition.nextstate.name, self.name)
+        #rtr += "\tif (digitalRead(%s) == %s && guard) {\n\t\ttime = millis(); state_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
+        #       % (transition.sensor.name, SIGNAL.value(transition.value), transition.nextstate.name, self.name)
+        rtr += "\tif ("
+        for t in transition:
+            if isinstance(t, Transition): #Regular case -> only one transition here. transiton.len() == 1
+                rtr += "digitalRead(%s) == %s && " % (t.sensor.name, SIGNAL.value(t.value))
+            elif isinstance(t, LogicTransition):
+                rtr += "digitalRead(%s) == %s %s digitalRead(%s) == %s" % (t.sensor_a.name, SIGNAL.value(t.value_a), t.type, t.sensor_b.name, SIGNAL.value(t.value_b))
+        rtr += " && guard) {\n\t\ttime = millis(); state_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
+                  % (transition[0].nextstate.name, self.name)
+        #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
         # end of state
         rtr += "\n}\n"
         return rtr
