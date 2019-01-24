@@ -8,6 +8,8 @@ from pyArduinoML.model.Sensor import Sensor
 from pyArduinoML.model.State import State
 from pyArduinoML.model.Transition import Transition
 from pyArduinoML.model.transition.LogicTransition import LogicTransition
+from pyArduinoML.model.transition.LogicTransitionOfTransitions import LogicTransitionOfTransitions
+from pyArduinoML.model.transition.LogicTransitionOfSensorAndTransitions import LogicTransitionOfSensorAndTransitions
 from pyArduinoML.model.transition.TransitionType import AND, OR
 from pyArduinoML.model.SIGNAL import HIGH, LOW
 
@@ -37,6 +39,46 @@ def demo():
 
     print(app)
 
+def testLogicTransitionOfTransitions(): #WORKS !
+    button = Sensor("BUTTON", 9)
+    secondButton = Sensor("SECONDBUTTON", 10)
+    led = Actuator("LED", 12)
+    buzzer = Actuator("BUZZER", 11)
+
+    on = State("on", [Action(HIGH, led), Action(HIGH, buzzer)])
+    off = State("off", [Action(LOW, led), Action(LOW, buzzer)])
+
+    switchon = LogicTransition(button, HIGH, AND, secondButton, HIGH, on)
+    switchoff = LogicTransition(button, LOW, OR, secondButton, LOW, off)
+    test = LogicTransitionOfTransitions(switchon, AND, switchon, on)
+
+    on.settransition(switchoff)
+    off.settransition(test)
+
+    app = App("Switch!", [button, led, buzzer, secondButton], [off, on])
+
+    print(app)
+
+def testLogicTransitionOfSensorAndTransitions(): #WORKS !
+    button = Sensor("BUTTON", 9)
+    secondButton = Sensor("SECONDBUTTON", 10)
+    led = Actuator("LED", 12)
+    buzzer = Actuator("BUZZER", 11)
+
+    on = State("on", [Action(HIGH, led), Action(HIGH, buzzer)])
+    off = State("off", [Action(LOW, led), Action(LOW, buzzer)])
+
+    switchon = LogicTransition(button, HIGH, AND, secondButton, HIGH, on)
+    switchoff = LogicTransition(button, LOW, OR, secondButton, LOW, off)
+    test = LogicTransitionOfSensorAndTransitions(button, HIGH, AND, switchon, on)
+
+    on.settransition(switchoff)
+    off.settransition(test)
+
+    app = App("Switch!", [button, led, buzzer, secondButton], [off, on])
+
+    print(app)
+
 def test():
     button = Sensor("BUTTON", 9)
     secondButton = Sensor("SECONDBUTTON", 10)
@@ -48,9 +90,10 @@ def test():
 
     switchon = LogicTransition(button, HIGH, AND, secondButton, HIGH, on)
     switchoff = LogicTransition(button, LOW, OR, secondButton, LOW, off)
+    test = LogicTransitionOfTransitions(switchon, AND, switchon, on)
 
     on.settransition(switchoff)
-    off.settransition(switchon)
+    off.settransition(test)
 
     app = App("Switch!", [button, led, buzzer, secondButton], [off, on])
 
@@ -58,4 +101,6 @@ def test():
 
 if __name__ == '__main__':
     #demo()
-    test()
+    #test() #WORKS
+    testLogicTransitionOfSensorAndTransitions() #WORKS
+    #testLogicTransitionOfTransitions() #WORKS

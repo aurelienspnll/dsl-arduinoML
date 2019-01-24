@@ -1,6 +1,8 @@
 from pyArduinoML.model.NamedElement import NamedElement
 from pyArduinoML.model.Transition import Transition
-from pyArduinoML.model.transition.LogicTransition import LogicTransition
+from pyArduinoML.model.transition.LogicTransition import *
+from pyArduinoML.model.transition.LogicTransitionOfTransitions import LogicTransitionOfTransitions
+from pyArduinoML.model.transition.LogicTransitionOfSensorAndTransitions import LogicTransitionOfSensorAndTransitions
 import SIGNAL
 
 class State(NamedElement):
@@ -57,11 +59,16 @@ class State(NamedElement):
         #rtr += "\tif (digitalRead(%s) == %s && guard) {\n\t\ttime = millis(); state_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
         #       % (transition.sensor.name, SIGNAL.value(transition.value), transition.nextstate.name, self.name)
         rtr += "\tif ("
+##TODO : POUR CHAQUES TRANSITIONS PAS BESOINS DE REGARDE LE NEXTSTATE GRACE AUX NOUVEAU TYPE
         for t in transition:
             if isinstance(t, Transition): #Regular case -> only one transition here. transiton.len() == 1
                 rtr += "digitalRead(%s) == %s && " % (t.sensor.name, SIGNAL.value(t.value))
             elif isinstance(t, LogicTransition):
-                rtr += "digitalRead(%s) == %s %s digitalRead(%s) == %s" % (t.sensor_a.name, SIGNAL.value(t.value_a), t.type, t.sensor_b.name, SIGNAL.value(t.value_b))
+                rtr += t.toArduino()
+            elif isinstance(t, LogicTransitionOfTransitions):
+                rtr += recursion(t)
+            elif isinstance(t, LogicTransitionOfSensorAndTransitions):
+                rtr += recursion(t)
         rtr += " && guard) {\n\t\ttime = millis(); state_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
                   % (transition[0].nextstate.name, self.name)
         #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
