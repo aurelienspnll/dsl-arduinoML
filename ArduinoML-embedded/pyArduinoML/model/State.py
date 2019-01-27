@@ -1,5 +1,6 @@
 from pyArduinoML.model.NamedElement import NamedElement
 from pyArduinoML.model.Transition import Transition
+from pyArduinoML.model.ActionSound import ActionSound
 from pyArduinoML.model.transition.LogicTransition import *
 from pyArduinoML.model.transition.LogicTransitionOfTransitions import LogicTransitionOfTransitions
 from pyArduinoML.model.transition.LogicTransitionOfSensorAndTransitions import LogicTransitionOfSensorAndTransitions
@@ -51,9 +52,20 @@ class State(NamedElement):
         rtr += "void state_%s() {\n" % self.name
         # generate code for state actions
         for action in self.actions:
-            rtr += "\tdigitalWrite(%s, %s);\n" % (action.brick.name, SIGNAL.value(action.value))
+            if isinstance(action, ActionSound):
+                rtr += "\tfor (int i = 0; i < %s; i++) {\n" % (action.repetition)
+                rtr += "\t\tdigitalWrite(%s, HIGH);\n" % (action.brick.name)
+                rtr += "\t\tdelay(%s);\n" % (action.time)
+                rtr += "\t\tdigitalWrite(%s, LOW);\n" % (action.brick.name)
+                rtr += "\t\tdelay(%s);\n" % (action.time)
+                rtr += "\t}\n"
+
+            else:
+                rtr += "\tdigitalWrite(%s, %s);\n" % (action.brick.name, SIGNAL.value(action.value))
 
         rtr += "\tboolean guard =  millis() - time > debounce;\n"
+
+
         # generate code for the transition
         rtr += "\tif ("
         ##TODO : POUR CHAQUES TRANSITIONS PAS BESOINS DE REGARDE LE NEXTSTATE GRACE AUX NOUVEAU TYPE
