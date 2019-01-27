@@ -112,8 +112,35 @@ def  state_based_alarm():
     
     print(app)
 
+def multi_state_alarm():
+    
+    from pyArduinoML.methodchaining.AppBuilder import AppBuilder
+    from pyArduinoML.model.SIGNAL import HIGH, LOW
+
+    app = AppBuilder("Switch!") \
+        .sensor("BUTTON").on_pin(9) \
+        .actuator("LED").on_pin(12) \
+        .actuator("BUZZER").on_pin(11) \
+        .state("init") \
+            .set("LED").to(LOW) \
+            .set("BUZZER").to(LOW) \
+            .when("BUTTON").has_value(HIGH).go_to_state("buzzer_on") \
+        .state("buzzer_on") \
+            .set("LED").to(LOW) \
+            .set("BUZZER").to(HIGH) \
+            .when("BUTTON").has_value(HIGH).go_to_state("led_on") \
+        .state("led_on") \
+            .set("LED").to(HIGH) \
+            .set("BUZZER").to(LOW) \
+            .when("BUTTON").has_value(HIGH).go_to_state("init") \
+        .get_contents()
+    
+    print(app)
+
 if __name__ == '__main__':
     #very_simple_alarm() #OK
     #dual_check_alarm() #OK
-    state_based_alarm()
+    #state_based_alarm() #OK
+    multi_state_alarm() #OK
+
 
