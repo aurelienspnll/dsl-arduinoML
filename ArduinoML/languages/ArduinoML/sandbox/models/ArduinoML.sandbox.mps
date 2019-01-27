@@ -24,11 +24,15 @@
       <concept id="1974891426869549397" name="ArduinoML.structure.State" flags="ng" index="bVy0v">
         <child id="1974891426869549405" name="actions" index="bVy0n" />
         <child id="1974891426869549409" name="transition" index="bVy0F" />
+        <child id="8729152039369307631" name="notes" index="2pRXxC" />
       </concept>
       <concept id="1974891426869549408" name="ArduinoML.structure.Transition" flags="ng" index="bVy0E">
         <property id="8970791711877432911" name="status" index="w1U77" />
         <reference id="8970791711877433780" name="sensor" index="w1USW" />
         <reference id="8970791711877436387" name="target" index="w1VhF" />
+      </concept>
+      <concept id="8729152039369135152" name="ArduinoML.structure.Sound" flags="ng" index="2pRnAR">
+        <property id="8729152039369135153" name="note" index="2pRnAQ" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -245,6 +249,39 @@
         <property role="w1U77" value="true" />
         <ref role="w1USW" node="7$$bovwY6Rw" resolve="button" />
         <ref role="w1VhF" node="7$$bovwY4F1" resolve="state0" />
+      </node>
+    </node>
+  </node>
+  <node concept="bUo9v" id="4X8tYX31lll">
+    <property role="TrG5h" value="music" />
+    <ref role="w1Rgg" node="4X8tYX31lln" resolve="1" />
+    <node concept="bUo9p" id="4X8tYX31wcC" role="bUo9s">
+      <property role="TrG5h" value="buzzer" />
+      <property role="bUo9r" value="10" />
+    </node>
+    <node concept="bUo9u" id="4X8tYX31wcD" role="bUo9s">
+      <property role="TrG5h" value="button" />
+      <property role="bUo9r" value="9" />
+    </node>
+    <node concept="bVy0v" id="4X8tYX31lln" role="w1Rgt">
+      <property role="TrG5h" value="1" />
+      <node concept="bVy0E" id="4X8tYX31llo" role="bVy0F">
+        <ref role="w1USW" node="4X8tYX31wcD" resolve="button" />
+        <ref role="w1VhF" node="4X8tYX31wdR" resolve="2" />
+      </node>
+    </node>
+    <node concept="bVy0v" id="4X8tYX31wdR" role="w1Rgt">
+      <property role="TrG5h" value="2" />
+      <node concept="2pRnAR" id="4X8tYX31wdZ" role="2pRXxC">
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+      <node concept="2pRnAR" id="4X8tYX31we5" role="2pRXxC">
+        <property role="2pRnAQ" value="3400" />
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+      <node concept="bVy0E" id="4X8tYX31wdS" role="bVy0F">
+        <ref role="w1USW" node="4X8tYX31wcD" resolve="button" />
+        <ref role="w1VhF" node="4X8tYX31lln" resolve="1" />
       </node>
     </node>
   </node>
