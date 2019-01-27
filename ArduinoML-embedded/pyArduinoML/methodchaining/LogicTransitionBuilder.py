@@ -1,14 +1,16 @@
 from pyArduinoML.model.Transition import Transition
+from pyArduinoML.model.transition.LogicTransition import LogicTransition
+from pyArduinoML.model.transition.TransitionType import AND, OR
 from pyArduinoML.methodchaining.UndefinedBrick import UndefinedBrick
 from pyArduinoML.methodchaining.UndefinedState import UndefinedState
 
 
-class TransitionBuilder:
+class LogicTransitionBuilder:
     """
     Builder for transitions.
     """
 
-    def __init__(self, root, sensor):
+    def __init__(self, root, transition, type, sensor):
         """
         Constructor.
 
@@ -17,7 +19,9 @@ class TransitionBuilder:
         :return:
         """
         self.root = root
+        self.transition = transition
         self.sensor = sensor
+        self.type = type
         self.value = None  # SIGNAL, state of the brick to trigger the transition
         self.next_state = None  # String, name of the target state
 
@@ -26,12 +30,11 @@ class TransitionBuilder:
         Sets the action.
 
         :param value: SIGNAL, state of the brick to trigger the transition
-        :return: TransitionBuilder, the builder
+        :return: LogicTransitionBuilder, the builder
         """
         self.value = value
-        return self.root
+        return self
 
-    '''
     def go_to_state(self, next_state):
         """
         Sets the target state.
@@ -40,10 +43,7 @@ class TransitionBuilder:
         :return: StateBuilder, the builder root
         """
         self.next_state = next_state
-        print("SALUT")
-        print(self.root.root)
         return self.root.root
-    '''
     
     def get_contents(self, bricks, states):
         """
@@ -59,4 +59,4 @@ class TransitionBuilder:
             raise UndefinedBrick()
         if self.next_state not in states.keys():
             raise UndefinedState()
-        return Transition(bricks[self.sensor], self.value, states[self.next_state])
+        return LogicTransition(bricks[self.transition.sensor], self.transition.value, self.type, bricks[self.sensor], self.value, states[self.next_state])
