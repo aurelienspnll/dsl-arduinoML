@@ -14,7 +14,7 @@ def very_simple_alarm():
     from pyArduinoML.methodchaining.AppBuilder import AppBuilder
     from pyArduinoML.model.SIGNAL import HIGH, LOW
 
-    app = AppBuilder("Switch!") \
+    app = AppBuilder("Very simple alarm!") \
         .sensor("BUTTON").on_pin(9) \
         .actuator("LED").on_pin(12) \
         .actuator("BUZZER").on_pin(11) \
@@ -42,7 +42,7 @@ def dual_check_alarm():
     from pyArduinoML.model.SIGNAL import HIGH, LOW
     from pyArduinoML.model.transition.TransitionType import AND, OR
 
-    app = AppBuilder("Switch!") \
+    app = AppBuilder("Dual-check alarm!") \
         .sensor("BUTTON").on_pin(9) \
         .sensor("SECONDBUTTON").on_pin(10) \
         .actuator("BUZZER").on_pin(11) \
@@ -69,7 +69,7 @@ def state_based_alarm():
     from pyArduinoML.methodchaining.AppBuilder import AppBuilder
     from pyArduinoML.model.SIGNAL import HIGH, LOW
 
-    app = AppBuilder("Switch!") \
+    app = AppBuilder("State-based alarm!") \
         .sensor("BUTTON").on_pin(9) \
         .actuator("LED").on_pin(12) \
         .state("off") \
@@ -93,7 +93,7 @@ def multi_state_alarm():
     from pyArduinoML.methodchaining.AppBuilder import AppBuilder
     from pyArduinoML.model.SIGNAL import HIGH, LOW
 
-    app = AppBuilder("Switch!") \
+    app = AppBuilder("Multi-state alarm!") \
         .sensor("BUTTON").on_pin(9) \
         .actuator("LED").on_pin(12) \
         .actuator("BUZZER").on_pin(11) \

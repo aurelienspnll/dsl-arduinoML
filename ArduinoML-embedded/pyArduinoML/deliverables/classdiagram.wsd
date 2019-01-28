@@ -1,0 +1,52 @@
+@startuml
+skinparam classAttributeIconSize 0
+class App {
+    - name : NamedElement
+    - bricks : Brick []
+    - states : State []
+}
+
+class State {
+    - name : NamedElement
+    - transitions : Transition []
+    - actions : Action []
+    + setTransition(Transition)
+    + addTransition(Transition)
+    + string setup()
+}
+
+class Transition {
+    - sensor : Sensor
+    - value : SIGNAL
+    - nextstate : State
+}
+
+class Brick {
+    - name : NamedElement
+    - pin : Integer
+    + declare()
+}
+
+class NamedElement{
+    -name : String
+}
+
+class Action {
+    -value : SIGNAL
+    -brick : Brick
+}
+
+App --> "1..N" Brick
+App --> "1..N" State
+
+State "1" <--> "1..N" Transition
+State --> "1..N" Action
+
+Transition -> Sensor
+Action -> Actuator
+
+Brick <|.. NamedElement
+Sensor <|.. Brick
+Actuator <|.. Brick
+
+@enduml
