@@ -32,6 +32,7 @@
         <reference id="8970791711877436387" name="target" index="w1VhF" />
       </concept>
       <concept id="8729152039369135152" name="ArduinoML.structure.Sound" flags="ng" index="2pRnAR">
+        <property id="7708629739708633049" name="repeat" index="2mCG8Y" />
         <property id="8729152039369135153" name="note" index="2pRnAQ" />
       </concept>
     </language>
@@ -254,34 +255,111 @@
   </node>
   <node concept="bUo9v" id="4X8tYX31lll">
     <property role="TrG5h" value="music" />
-    <ref role="w1Rgg" node="4X8tYX31lln" resolve="1" />
+    <ref role="w1Rgg" node="4X8tYX31lln" resolve="off" />
     <node concept="bUo9p" id="4X8tYX31wcC" role="bUo9s">
       <property role="TrG5h" value="buzzer" />
-      <property role="bUo9r" value="10" />
+      <property role="bUo9r" value="12" />
     </node>
     <node concept="bUo9u" id="4X8tYX31wcD" role="bUo9s">
       <property role="TrG5h" value="button" />
       <property role="bUo9r" value="9" />
     </node>
+    <node concept="bUo9u" id="6FUzuvWl$R4" role="bUo9s">
+      <property role="TrG5h" value="button2" />
+      <property role="bUo9r" value="10" />
+    </node>
     <node concept="bVy0v" id="4X8tYX31lln" role="w1Rgt">
-      <property role="TrG5h" value="1" />
+      <property role="TrG5h" value="off" />
       <node concept="bVy0E" id="4X8tYX31llo" role="bVy0F">
         <ref role="w1USW" node="4X8tYX31wcD" resolve="button" />
-        <ref role="w1VhF" node="4X8tYX31wdR" resolve="2" />
+        <ref role="w1VhF" node="4X8tYX31wdR" resolve="melodyA1" />
+      </node>
+      <node concept="bVy0E" id="6FUzuvWl_1t" role="bVy0F">
+        <ref role="w1USW" node="6FUzuvWl$R4" resolve="button2" />
+        <ref role="w1VhF" node="6FUzuvWl_0h" resolve="melodyB1" />
       </node>
     </node>
     <node concept="bVy0v" id="4X8tYX31wdR" role="w1Rgt">
-      <property role="TrG5h" value="2" />
+      <property role="TrG5h" value="melodyA1" />
       <node concept="2pRnAR" id="4X8tYX31wdZ" role="2pRXxC">
+        <property role="2mCG8Y" value="3" />
         <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
       </node>
       <node concept="2pRnAR" id="4X8tYX31we5" role="2pRXxC">
         <property role="2pRnAQ" value="3400" />
+        <property role="2mCG8Y" value="3" />
         <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
       </node>
       <node concept="bVy0E" id="4X8tYX31wdS" role="bVy0F">
         <ref role="w1USW" node="4X8tYX31wcD" resolve="button" />
-        <ref role="w1VhF" node="4X8tYX31lln" resolve="1" />
+        <ref role="w1VhF" node="6FUzuvWl_0A" resolve="melodyA2" />
+      </node>
+      <node concept="bVy0E" id="6FUzuvWl_1w" role="bVy0F">
+        <ref role="w1USW" node="6FUzuvWl$R4" resolve="button2" />
+        <ref role="w1VhF" node="6FUzuvWl_0O" resolve="melodyB2" />
+      </node>
+    </node>
+    <node concept="bVy0v" id="6FUzuvWl_0h" role="w1Rgt">
+      <property role="TrG5h" value="melodyB1" />
+      <node concept="bVy0E" id="6FUzuvWl_0i" role="bVy0F">
+        <ref role="w1USW" node="4X8tYX31wcD" resolve="button" />
+        <ref role="w1VhF" node="6FUzuvWl_0A" resolve="melodyA2" />
+      </node>
+      <node concept="bVy0E" id="6FUzuvWl_1z" role="bVy0F">
+        <ref role="w1USW" node="6FUzuvWl$R4" resolve="button2" />
+        <ref role="w1VhF" node="6FUzuvWl_0O" resolve="melodyB2" />
+      </node>
+      <node concept="2pRnAR" id="6FUzuvWl_0t" role="2pRXxC">
+        <property role="2pRnAQ" value="2272" />
+        <property role="2mCG8Y" value="3" />
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+      <node concept="2pRnAR" id="6FUzuvWl_0y" role="2pRXxC">
+        <property role="2pRnAQ" value="2028" />
+        <property role="2mCG8Y" value="3" />
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+    </node>
+    <node concept="bVy0v" id="6FUzuvWl_0A" role="w1Rgt">
+      <property role="TrG5h" value="melodyA2" />
+      <node concept="bVy0E" id="6FUzuvWl_0B" role="bVy0F">
+        <ref role="w1USW" node="4X8tYX31wcD" resolve="button" />
+        <ref role="w1VhF" node="4X8tYX31lln" resolve="off" />
+      </node>
+      <node concept="bVy0E" id="6FUzuvWl_1D" role="bVy0F">
+        <ref role="w1VhF" node="4X8tYX31lln" resolve="off" />
+        <ref role="w1USW" node="6FUzuvWl$R4" resolve="button2" />
+      </node>
+      <node concept="2pRnAR" id="6FUzuvWl_14" role="2pRXxC">
+        <property role="2pRnAQ" value="3038" />
+        <property role="2mCG8Y" value="3" />
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+      <node concept="2pRnAR" id="6FUzuvWl_1d" role="2pRXxC">
+        <property role="2pRnAQ" value="2864" />
+        <property role="2mCG8Y" value="3" />
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+    </node>
+    <node concept="bVy0v" id="6FUzuvWl_0O" role="w1Rgt">
+      <property role="TrG5h" value="melodyB2" />
+      <node concept="2pRnAR" id="6FUzuvWl_1j" role="2pRXxC">
+        <property role="2pRnAQ" value="2550" />
+        <property role="2mCG8Y" value="3" />
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+      <node concept="2pRnAR" id="6FUzuvWl_1p" role="2pRXxC">
+        <property role="2pRnAQ" value="1912" />
+        <property role="2mCG8Y" value="3" />
+        <ref role="w1VAp" node="4X8tYX31wcC" resolve="buzzer" />
+      </node>
+      <node concept="bVy0E" id="6FUzuvWl_1H" role="bVy0F">
+        <ref role="w1USW" node="4X8tYX31wcD" resolve="button" />
+        <ref role="w1VhF" node="4X8tYX31lln" resolve="off" />
+      </node>
+      <node concept="bVy0E" id="6FUzuvWl_1K" role="bVy0F">
+        <ref role="w1VhF" node="4X8tYX31lln" resolve="off" />
+        <ref role="w1USW" node="6FUzuvWl$R4" resolve="button2" />
       </node>
     </node>
   </node>

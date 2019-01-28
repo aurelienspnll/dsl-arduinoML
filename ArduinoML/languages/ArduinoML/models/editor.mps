@@ -192,6 +192,16 @@
         </node>
         <node concept="l2Vlx" id="7LYDSxsuQT1" role="2iSdaV" />
       </node>
+      <node concept="3EZMnI" id="6FUzuvWmQ1w" role="3EZMnx">
+        <node concept="VPM3Z" id="6FUzuvWmQ1y" role="3F10Kt" />
+        <node concept="l2Vlx" id="6FUzuvWmQ1_" role="2iSdaV" />
+        <node concept="3XFhqQ" id="6FUzuvWmQ24" role="3EZMnx" />
+        <node concept="3F2HdR" id="6FUzuvWmQ29" role="3EZMnx">
+          <ref role="1NtTu8" to="cmsa:6FUzuvWmL_5" resolve="bips" />
+          <node concept="2iRkQZ" id="6FUzuvWmQ2c" role="2czzBx" />
+          <node concept="VPM3Z" id="6FUzuvWmQ2d" role="3F10Kt" />
+        </node>
+      </node>
       <node concept="3EZMnI" id="7$$bovwYZqX" role="3EZMnx">
         <node concept="VPM3Z" id="7$$bovwYZqZ" role="3F10Kt" />
         <node concept="3XFhqQ" id="7$$bovwYZry" role="3EZMnx" />
@@ -226,6 +236,39 @@
         <ref role="1NtTu8" to="cmsa:7$$bovwYlgL" resolve="note" />
       </node>
       <node concept="l2Vlx" id="7$$bovwYlh0" role="2iSdaV" />
+      <node concept="3F0ifn" id="6FUzuvWm4ZO" role="3EZMnx">
+        <property role="3F0ifm" value="times" />
+      </node>
+      <node concept="3F0A7n" id="6FUzuvWm4ZF" role="3EZMnx">
+        <ref role="1NtTu8" to="cmsa:6FUzuvWm4Zp" resolve="repeat" />
+      </node>
+    </node>
+  </node>
+  <node concept="24kQdi" id="6FUzuvWmEjE">
+    <ref role="1XX52x" to="cmsa:6FUzuvWmEjs" resolve="Bips" />
+    <node concept="3EZMnI" id="6FUzuvWmEjG" role="2wV5jI">
+      <node concept="1iCGBv" id="6FUzuvWmEjY" role="3EZMnx">
+        <ref role="1NtTu8" to="cmsa:7LYDSxsuhSh" resolve="actuator" />
+        <node concept="1sVBvm" id="6FUzuvWmEk0" role="1sWHZn">
+          <node concept="3F0A7n" id="6FUzuvWmEk7" role="2wV5jI">
+            <property role="1Intyy" value="true" />
+            <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+          </node>
+        </node>
+      </node>
+      <node concept="3F0ifn" id="6FUzuvWmEkf" role="3EZMnx">
+        <property role="3F0ifm" value="bipLenght" />
+      </node>
+      <node concept="3F0A7n" id="6FUzuvWmEky" role="3EZMnx">
+        <ref role="1NtTu8" to="cmsa:6FUzuvWmEjt" resolve="lenght" />
+      </node>
+      <node concept="3F0ifn" id="6FUzuvWmEkK" role="3EZMnx">
+        <property role="3F0ifm" value="repeat" />
+      </node>
+      <node concept="3F0A7n" id="6FUzuvWmEl0" role="3EZMnx">
+        <ref role="1NtTu8" to="cmsa:6FUzuvWmEjv" resolve="repeat" />
+      </node>
+      <node concept="l2Vlx" id="6FUzuvWmEjJ" role="2iSdaV" />
     </node>
   </node>
 </model>
