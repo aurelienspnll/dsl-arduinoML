@@ -1,4 +1,5 @@
 from pyArduinoML.model.Action import Action
+from pyArduinoML.model.ActionSound import ActionSound
 from pyArduinoML.methodchaining.UndefinedBrick import UndefinedBrick
 
 
@@ -18,6 +19,8 @@ class StateActionBuilder:
         self.root = root
         self.actuator = actuator
         self.data = None  # SIGNAL, signal to send to the actuator
+        self.time = None
+        self.repetition = None
 
     def to(self, data):
         """
@@ -29,6 +32,29 @@ class StateActionBuilder:
         self.data = data
         return self.root
 
+
+    def to_emit_sound_for_ms(self, time):
+        """
+        Sets the signal to send.
+
+        :param repetition: Number of repetitions
+        :return: BehaviorBuilder, builder for the behavior
+        """
+        self.time = time
+        return self
+
+
+    def repeat(self, repetition):
+        """
+        Sets the signal to send.
+
+        :param repetition: Number of repetitions
+        :return: BehaviorBuilder, builder for the behavior
+        """
+        self.repetition = repetition
+        return self.root
+
+
     def get_contents(self, bricks):
         """
         Builds the action.
@@ -39,4 +65,7 @@ class StateActionBuilder:
         """
         if self.actuator not in bricks.keys():
             raise UndefinedBrick()
+        elif self.time != None and self.repetition != None:
+            return ActionSound(self.time, self.repetition, self.data, bricks[self.actuator])
+
         return Action(self.data, bricks[self.actuator])
