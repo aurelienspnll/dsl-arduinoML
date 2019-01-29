@@ -131,10 +131,10 @@ def signaling_stuff_using_sounds():
             .set("BUZZER").to(LOW) \
             .when("BUTTON").has_value(HIGH).go_to_state("step_one") \
         .state("step_one") \
-            .set("BUZZER").to_emit_sound_for_ms(100).repeat(3) \
+            .set("BUZZER").to_emit_sound_for_ms(300).repeat(3) \
             .when("BUTTON").has_value(HIGH).go_to_state("step_two") \
         .state("step_two") \
-            .set("BUZZER").to_emit_sound_for_ms(300).repeat(1) \
+            .set("BUZZER").to_emit_sound_for_ms(1000).repeat(1) \
             .when("BUTTON").has_value(HIGH).go_to_state("init") \
         .get_contents()
     
