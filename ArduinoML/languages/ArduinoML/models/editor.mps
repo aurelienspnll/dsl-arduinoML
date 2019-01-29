@@ -245,7 +245,7 @@
     </node>
   </node>
   <node concept="24kQdi" id="6FUzuvWmEjE">
-    <ref role="1XX52x" to="cmsa:6FUzuvWmEjs" resolve="Bips" />
+    <ref role="1XX52x" to="cmsa:6FUzuvWmEjs" resolve="ActionSound" />
     <node concept="3EZMnI" id="6FUzuvWmEjG" role="2wV5jI">
       <node concept="1iCGBv" id="6FUzuvWmEjY" role="3EZMnx">
         <ref role="1NtTu8" to="cmsa:7LYDSxsuhSh" resolve="actuator" />

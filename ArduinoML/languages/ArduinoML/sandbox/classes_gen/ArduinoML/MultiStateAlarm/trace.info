@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info version="2">
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123155:jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <root nodeRef="r:d08af979-b1db-4755-bfe8-9443cf89d3a1(ArduinoML.MultiStateAlarm)/8729152039369067199">
+    <file name="map_App.java">
+      <node id="8729152039369067199" at="7,42,8,56" concept="0" />
+      <node id="8729152039369067199" at="8,56,9,40" concept="0" />
+      <node id="8729152039369076192" at="9,40,10,57" concept="0" />
+      <node id="8729152039369077932" at="10,57,11,59" concept="0" />
+      <node id="8729152039369080252" at="11,59,12,59" concept="0" />
+      <node id="8729152039369067199" at="12,59,13,28" concept="0" />
+      <node id="8729152039369067199" at="13,28,14,51" concept="0" />
+      <node id="8729152039369067199" at="14,51,15,64" concept="0" />
+      <node id="8729152039369067199" at="15,64,16,0" concept="1" />
+      <node id="8729152039369067199" at="16,0,17,58" concept="0" />
+      <node id="8729152039369081702" at="17,58,18,70" concept="0" />
+      <node id="8729152039369067199" at="18,70,19,73" concept="0" />
+      <node id="8729152039369067199" at="19,73,20,87" concept="0" />
+      <node id="8729152039369067199" at="20,87,21,75" concept="0" />
+      <node id="8729152039369067199" at="21,75,22,31" concept="0" />
+      <node id="8729152039369067199" at="22,31,23,55" concept="0" />
+      <node id="8729152039369067199" at="23,55,24,30" concept="0" />
+      <node id="8729152039369067199" at="24,30,25,0" concept="1" />
+      <node id="8729152039369067199" at="25,0,26,58" concept="0" />
+      <node id="8729152039369083151" at="26,58,27,71" concept="0" />
+      <node id="8729152039369067199" at="27,71,28,73" concept="0" />
+      <node id="8729152039369067199" at="28,73,29,87" concept="0" />
+      <node id="8729152039369067199" at="29,87,30,75" concept="0" />
+      <node id="8729152039369067199" at="30,75,31,31" concept="0" />
+      <node id="8729152039369067199" at="31,31,32,55" concept="0" />
+      <node id="8729152039369067199" at="32,55,33,30" concept="0" />
+      <node id="8729152039369067199" at="33,30,34,0" concept="1" />
+      <node id="8729152039369067199" at="34,0,35,58" concept="0" />
+      <node id="8729152039369084312" at="35,58,36,71" concept="0" />
+      <node id="1750684581906860735" at="36,71,37,70" concept="0" />
+      <node id="8729152039369067199" at="37,70,38,73" concept="0" />
+      <node id="8729152039369067199" at="38,73,39,87" concept="0" />
+      <node id="8729152039369067199" at="39,87,40,75" concept="0" />
+      <node id="8729152039369067199" at="40,75,41,31" concept="0" />
+      <node id="8729152039369067199" at="41,31,42,55" concept="0" />
+      <node id="8729152039369067199" at="42,55,43,30" concept="0" />
+      <node id="8729152039369067199" at="43,30,44,0" concept="1" />
+      <node id="8729152039369067199" at="44,0,45,0" concept="1" />
+      <node id="8729152039369067199" at="45,0,46,95" concept="0" />
+      <node id="8729152039369067199" at="46,95,47,0" concept="1" />
+      <node id="8729152039369067199" at="47,0,48,0" concept="1" />
+      <node id="8729152039369067199" at="48,0,49,0" concept="1" />
+      <node id="8729152039369067199" at="7,0,51,0" concept="2" trace="main#([Ljava/lang/String;)V" />
+      <scope id="8729152039369076192" at="9,40,10,57" />
+      <scope id="8729152039369077932" at="10,57,11,59" />
+      <scope id="8729152039369080252" at="11,59,12,59" />
+      <scope id="8729152039369081702" at="17,58,18,70" />
+      <scope id="8729152039369083151" at="26,58,27,71" />
+      <scope id="8729152039369084312" at="35,58,36,71" />
+      <scope id="1750684581906860735" at="36,71,37,70" />
+      <scope id="8729152039369067199" at="7,42,49,0" />
+      <scope id="8729152039369067199" at="7,0,51,0">
+        <var name="args" id="8729152039369067199" />
+      </scope>
+      <unit id="8729152039369067199" at="6,0,52,0" name="ArduinoML.MultiStateAlarm.map_App" />
+    </file>
+  </root>
+</debug-info>
+
