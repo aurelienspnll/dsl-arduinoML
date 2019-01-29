@@ -126,30 +126,40 @@ def signaling_stuff_using_sounds():
 
     app = AppBuilder("Switch!") \
         .sensor("BUTTON").on_pin(9) \
-        .actuator("LED").on_pin(12) \
         .actuator("BUZZER").on_pin(11) \
         .state("init") \
+            .set("BUZZER").to(LOW) \
+            .when("BUTTON").has_value(HIGH).go_to_state("step_one") \
+        .state("step_one") \
             .set("BUZZER").to_emit_sound_for_ms(100).repeat(3) \
-            .set("LED").to(LOW) \
-            .set("BUZZER").to(LOW) \
-            .when("BUTTON").has_value(HIGH).go_to_state("buzzer_on") \
-        .state("buzzer_on") \
-            .set("LED").to(LOW) \
-            .set("BUZZER").to(HIGH) \
-            .when("BUTTON").has_value(HIGH).go_to_state("led_on") \
-        .state("led_on") \
+            .when("BUTTON").has_value(HIGH).go_to_state("step_two") \
+        .state("step_two") \
             .set("BUZZER").to_emit_sound_for_ms(300).repeat(1) \
-            .set("LED").to(HIGH) \
-            .set("BUZZER").to(LOW) \
             .when("BUTTON").has_value(HIGH).go_to_state("init") \
         .get_contents()
+    
     print(app)
 
 
 if __name__ == '__main__':
-    #very_simple_alarm() #OK
-    #dual_check_alarm() #OK
-    #state_based_alarm() #OK
-    #multi_state_alarm() #OK
+    print("\n\n-----------------------------------------——------------")
+    print("-------------------- VERY SIMPLE ALARM ---------------------")
+    print("-----------------------------------------——------------\n\n")
+    very_simple_alarm() #OK
+    print("\n\n-----------------------------------------——------------")
+    print("-------------------- DUAL CHECK ALARM ----------------------")
+    print("-----------------------------------------——------------\n\n")
+    dual_check_alarm() #OK
+    print("\n\n-----------------------------------------——------------")
+    print("-------------------- STATE-BASED ALARM ---------------------")
+    print("-----------------------------------------——------------\n\n")
+    state_based_alarm() #OK
+    print("\n\n-----------------------------------------——------------")
+    print("-------------------- MULTI-STATE ALARM ---------------------")
+    print("-----------------------------------------——------------\n\n")
+    multi_state_alarm() #OK
+    print("\n\n-----------------------------------------——------------")
+    print("----------- SINGNALING STUFF USING SOUNDS -------------")
+    print("-----------------------------------------——------------\n\n")
     signaling_stuff_using_sounds()
 
