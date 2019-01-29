@@ -133,7 +133,7 @@
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="bips" />
       <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="6FUzuvWmEjs" resolve="Bips" />
+      <ref role="20lvS9" node="6FUzuvWmEjs" resolve="ActionSound" />
     </node>
     <node concept="1TJgyj" id="1HCekCgxx_x" role="1TKVEi">
       <property role="IQ2ns" value="1974891426869549409" />
@@ -253,7 +253,7 @@
   </node>
   <node concept="1TIwiD" id="6FUzuvWmEjs">
     <property role="EcuMT" value="7708629739708785884" />
-    <property role="TrG5h" value="Bips" />
+    <property role="TrG5h" value="ActionSound" />
     <ref role="1TJDcQ" node="1HCekCgxx_v" resolve="Action" />
     <node concept="1TJgyi" id="6FUzuvWmEjt" role="1TKVEl">
       <property role="IQ2nx" value="7708629739708785885" />

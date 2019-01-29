@@ -308,7 +308,7 @@ import jetbrains.mps.nodeEditor.cellMenu.SChildSubstituteInfo;
       return MetaAdapterFactory.getContainmentLink(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a10861955L, 0x6afa8de7fc5b1945L, "bips");
     }
     public SAbstractConcept getChildSConcept() {
-      return MetaAdapterFactory.getConcept(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x6afa8de7fc5aa4dcL, "ArduinoML.structure.Bips");
+      return MetaAdapterFactory.getConcept(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x6afa8de7fc5aa4dcL, "ArduinoML.structure.ActionSound");
     }
 
     public EditorCell createNodeCell(SNode elementNode) {

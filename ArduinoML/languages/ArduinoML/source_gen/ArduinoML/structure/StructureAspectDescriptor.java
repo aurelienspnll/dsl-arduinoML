@@ -17,9 +17,9 @@ import jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId;
 
 public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptAction = createDescriptorForAction();
+  /*package*/ final ConceptDescriptor myConceptActionSound = createDescriptorForActionSound();
   /*package*/ final ConceptDescriptor myConceptActuator = createDescriptorForActuator();
   /*package*/ final ConceptDescriptor myConceptApp = createDescriptorForApp();
-  /*package*/ final ConceptDescriptor myConceptBips = createDescriptorForBips();
   /*package*/ final ConceptDescriptor myConceptBrick = createDescriptorForBrick();
   /*package*/ final ConceptDescriptor myConceptSensor = createDescriptorForSensor();
   /*package*/ final ConceptDescriptor myConceptSound = createDescriptorForSound();
@@ -35,7 +35,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptAction, myConceptActuator, myConceptApp, myConceptBips, myConceptBrick, myConceptSensor, myConceptSound, myConceptState, myConceptTransition);
+    return Arrays.asList(myConceptAction, myConceptActionSound, myConceptActuator, myConceptApp, myConceptBrick, myConceptSensor, myConceptSound, myConceptState, myConceptTransition);
   }
 
   @Override
@@ -44,12 +44,12 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     switch (myIndexSwitch.index(id)) {
       case LanguageConceptSwitch.Action:
         return myConceptAction;
+      case LanguageConceptSwitch.ActionSound:
+        return myConceptActionSound;
       case LanguageConceptSwitch.Actuator:
         return myConceptActuator;
       case LanguageConceptSwitch.App:
         return myConceptApp;
-      case LanguageConceptSwitch.Bips:
-        return myConceptBips;
       case LanguageConceptSwitch.Brick:
         return myConceptBrick;
       case LanguageConceptSwitch.Sensor:
@@ -83,6 +83,16 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.associate("actuator", 0x7c7ea7885c791e11L).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1081bb13L).optional(false).origin("8970791711877438993").done();
     return b.create();
   }
+  private static ConceptDescriptor createDescriptorForActionSound() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("ArduinoML", "ActionSound", 0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x6afa8de7fc5aa4dcL);
+    b.class_(false, false, false);
+    b.super_("ArduinoML.structure.Action", 0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1086195fL);
+    b.origin("r:4854ca2b-a3e0-45dd-8ae9-4f6abda320c6(ArduinoML.structure)/7708629739708785884");
+    b.version(2);
+    b.property("lenght", 0x6afa8de7fc5aa4ddL).type(PrimitiveTypeId.INTEGER).origin("7708629739708785885").done();
+    b.property("repeat", 0x6afa8de7fc5aa4dfL).type(PrimitiveTypeId.INTEGER).origin("7708629739708785887").done();
+    return b.create();
+  }
   private static ConceptDescriptor createDescriptorForActuator() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("ArduinoML", "Actuator", 0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1081bb13L);
     b.class_(false, false, false);
@@ -101,16 +111,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.associate("init_state", 0x7c7ea7885c79d398L).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a10861955L).optional(false).origin("8970791711877485464").done();
     b.aggregate("bricks", 0x1b68394a1081bb16L).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1081bb0eL).optional(false).ordered(true).multiple(true).origin("1974891426869263126").done();
     b.aggregate("state", 0x7c7ea7885c79d395L).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a10861955L).optional(false).ordered(true).multiple(true).origin("8970791711877485461").done();
-    return b.create();
-  }
-  private static ConceptDescriptor createDescriptorForBips() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("ArduinoML", "Bips", 0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x6afa8de7fc5aa4dcL);
-    b.class_(false, false, false);
-    b.super_("ArduinoML.structure.Action", 0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1086195fL);
-    b.origin("r:4854ca2b-a3e0-45dd-8ae9-4f6abda320c6(ArduinoML.structure)/7708629739708785884");
-    b.version(2);
-    b.property("lenght", 0x6afa8de7fc5aa4ddL).type(PrimitiveTypeId.INTEGER).origin("7708629739708785885").done();
-    b.property("repeat", 0x6afa8de7fc5aa4dfL).type(PrimitiveTypeId.INTEGER).origin("7708629739708785887").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForBrick() {
