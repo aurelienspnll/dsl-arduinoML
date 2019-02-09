@@ -1,6 +1,6 @@
 from pyArduinoML.model.State import State
 from pyArduinoML.model.Transition import Transition
-from pyArduinoML.model.transition.LogicTransition import LogicTransition
+from pyArduinoML.model.LogicTransition import LogicTransition
 from pyArduinoML.model.transition.TransitionType import AND, OR
 from pyArduinoML.methodchaining.TransitionBuilder import TransitionBuilder
 from pyArduinoML.methodchaining.LogicTransitionBuilder import LogicTransitionBuilder
