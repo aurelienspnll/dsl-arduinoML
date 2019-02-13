@@ -69,6 +69,11 @@ class AppBuilder:
         # we also use two lists since the ordering is important
         state_names = [] # List[String]
         state_values = [] # List[State]
+        '''
+        # build the modes
+        modes = {} # Map[String, Mode]
+        mode_names = [] # List[String]
+        '''
         for builder in self.states:
             state = builder.get_contents(bricks)
             states[state.name] = state
