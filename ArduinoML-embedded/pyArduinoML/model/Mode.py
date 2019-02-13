@@ -2,8 +2,6 @@ from pyArduinoML.model.NamedElement import NamedElement
 from pyArduinoML.model.Transition import Transition
 from pyArduinoML.model.ActionSound import ActionSound
 from pyArduinoML.model.transition.LogicTransition import *
-from pyArduinoML.model.transition.LogicTransitionOfTransitions import LogicTransitionOfTransitions
-from pyArduinoML.model.transition.LogicTransitionOfSensorAndTransitions import LogicTransitionOfSensorAndTransitions
 import SIGNAL
 
 class Mode(NamedElement):
@@ -44,4 +42,24 @@ class Mode(NamedElement):
         rtr += "\t}\n"
         rtr += "\tcurent_state();\n"
         rtr += "}"
+        return rtr
+
+    def setupTransition(self):
+        """
+        Arduino code for transitions of the mode.
+
+        :return: String
+        """
+        rtr = "\tif("
+        for t in self.transitions:
+            rtr += t.toArduino()
+            """
+            elif isinstance(t, LogicTransitionOfTransitions):
+                rtr += recursion(t)
+            elif isinstance(t, LogicTransitionOfSensorAndTransitions):
+                rtr += recursion(t)
+            """
+        rtr += ") {\n\t\tmode_%s();\n\t}" % (self.transitions[0].nextstate.name)
+        #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
+        # end of state
         return rtr
