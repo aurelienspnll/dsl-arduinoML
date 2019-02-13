@@ -1,10 +1,9 @@
 from transition.TransitionType import AND, OR
-import SIGNAL
 from Sensor import *
-from pyArduinoML.model.Transition import Transition
+from pyArduinoML.model.Transition import *
 
-class LogicTransition(Transition):
-    def __init__(self, sensor_a, value_a, type, sensor_b, value_b, nextstate):
+class LogicTransition():
+    def __init__(self, sensor_a, value_a, type, sensor_b, value_b, nextstate, comparison_a = "==", comparison_b = "==", read_a = "digital", read_b = "digital"):
         """
         Constructor.
         Ordre des args important -> plus lisible pour l'utilisateur.
@@ -14,23 +13,13 @@ class LogicTransition(Transition):
         :param nextstate: State, state to change to when the transition is triggered
         :return:
         """
-        Transition.__init__(self, sensor_a, value_a, nextstate)
-        self.sensor_b = sensor_b
-        self.value_b = value_b
+        self.transition_a = Transition(sensor_a, value_a, nextstate, comparison=comparison_a, read=read_a)
+        self.transition_b = Transition(sensor_b, value_b, nextstate, comparison=comparison_b, read=read_b)
+        self.nextstate = nextstate
         self.type = type
 
     def toArduino(self):
-        str = "" + sensorAndValueToString(self.sensor, self.value)
+        str = "" + self.transition_a.toArduino()
         str += " %s " % (self.type)
-        str += sensorAndValueToString(self.sensor_b, self.value_b)
+        str += self.transition_b.toArduino()
         return str
-
-def sensorAndValueToString(sensor, value):
-    return "digitalRead(%s) == %s" % (sensor.name, SIGNAL.value(value))
-
-#Works !
-def recursion(transiton):
-    res = "("
-    if isinstance(transiton, LogicTransition): #Point d'arret
-        res += transiton.toArduino() + ")"
-        return res

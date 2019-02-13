@@ -70,17 +70,8 @@ class State(NamedElement):
         rtr += "\tif ("
         ##TODO : POUR CHAQUES TRANSITIONS PAS BESOINS DE REGARDE LE NEXTSTATE GRACE AUX NOUVEAU TYPE
         for t in self.transitions:
-            if isinstance(t, LogicTransition):
-                rtr += t.toArduino()
-            else :#"""isinstance(t, Transition):""" #Regular case -> only one transition here. transiton.len() == 1
-                rtr += "digitalRead(%s) == %s" % (t.sensor.name, SIGNAL.value(t.value))
-            """
-            elif isinstance(t, LogicTransitionOfTransitions):
-                rtr += recursion(t)
-            elif isinstance(t, LogicTransitionOfSensorAndTransitions):
-                rtr += recursion(t)
-            """
-        rtr += " && guard) {\n\t\ttime = millis(); state_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
+            rtr += t.toArduino()
+        rtr += " && guard) {\n\t\ttime = millis();\n\t\tstate_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
                   % (self.transitions[0].nextstate.name, self.name)
         #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
         # end of state
