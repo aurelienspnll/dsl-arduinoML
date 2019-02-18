@@ -127,12 +127,43 @@ def signaling_stuff_using_sounds():
     app = AppBuilder("Switch!") \
         .sensor("BUTTON").on_pin(9) \
         .actuator("BUZZER").on_pin(11) \
+        .mode("test") \
+            .init_state("init").when("BUTTON").has_value(HIGH).go_to_mode("test") \
         .state("init") \
             .set("BUZZER").to(LOW) \
             .when("BUTTON").has_value(HIGH).go_to_state("step_one") \
         .state("step_one") \
             .set("BUZZER").to_emit_sound_for_ms(300).repeat(3) \
-            .when("BUTTON").has_value(HIGH).go_to_state("step_two") \
+            .when("BUTTON").greater_than(HIGH).go_to_state("step_two") \
+        .state("step_two") \
+            .set("BUZZER").to_emit_sound_for_ms(1000).repeat(1) \
+            .when("BUTTON").has_value(HIGH).go_to_state("init") \
+        .get_contents()
+    
+    print(app)
+
+def test_mode():
+    """
+    Direct use of the DSL.
+    + : auto-completion (limited due to python typing system)
+    - : verbose, Python syntax requires '\' to cut lines.
+
+    :return:
+    """
+    from pyArduinoML.methodchaining.AppBuilder import AppBuilder
+    from pyArduinoML.model.SIGNAL import HIGH, LOW
+
+    app = AppBuilder("Switch!") \
+        .sensor("BUTTON").on_pin(9) \
+        .actuator("BUZZER").on_pin(11) \
+        .mode("test") \
+            .init_state("init").when("BUTTON").has_value(HIGH).go_to_mode("test") \
+        .state("init") \
+            .set("BUZZER").to(LOW) \
+            .when("BUTTON").has_value(HIGH).go_to_state("step_one") \
+        .state("step_one") \
+            .set("BUZZER").to_emit_sound_for_ms(300).repeat(3) \
+            .when("BUTTON").greater_than(HIGH).go_to_state("step_two") \
         .state("step_two") \
             .set("BUZZER").to_emit_sound_for_ms(1000).repeat(1) \
             .when("BUTTON").has_value(HIGH).go_to_state("init") \
@@ -142,6 +173,7 @@ def signaling_stuff_using_sounds():
 
 
 if __name__ == '__main__':
+    '''
     print("\n\n-----------------------------------------——------------")
     print("------------------ VERY SIMPLE ALARM ------------------")
     print("-----------------------------------------——------------\n\n")
@@ -162,4 +194,8 @@ if __name__ == '__main__':
     print("----------- SINGNALING STUFF USING SOUNDS -------------")
     print("-----------------------------------------——------------\n\n")
     signaling_stuff_using_sounds()
-
+    '''
+    print("\n\n-----------------------------------------——------------")
+    print("----------------------- TEST --------------------------")
+    print("-----------------------------------------——------------\n\n")
+    test_mode()

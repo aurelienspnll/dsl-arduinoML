@@ -76,11 +76,6 @@ class AppBuilder:
         # we also use two lists since the ordering is important
         state_names = [] # List[String]
         state_values = [] # List[State]
-        '''
-        # build the modes
-        modes = {} # Map[String, Mode]
-        mode_names = [] # List[String]
-        '''
         for builder in self.states:
             state = builder.get_contents(bricks)
             states[state.name] = state
@@ -89,5 +84,17 @@ class AppBuilder:
         # build the transitions (2-step pass due to the meta-model)
         for builder in self.states:
             builder.get_contents2(bricks, states)
+        # build the modes
+        modes = {} # Map[String, Mode]
+        mode_names = [] # List[String]
+        mode_values = [] # List[Mode]
+        for builder in self.modes:
+            mode = builder.get_contents()
+            modes[mode.name] = mode
+            mode_names += [state.name]
+            mode_values += [mode]
+        for builder in self.modes:
+            builder.get_contents2(bricks, states, modes)
+        #print(mode_values[0].transitions)
         # build the app
-        return App(self.name, bricks.values(), state_values)
+        return App(self.name, bricks.values(), state_values, mode_values)

@@ -38,7 +38,7 @@ class Mode(NamedElement):
         # generate code for state actions
         rtr += "\tif(current_mode != \"" + name_str + "\") { \n"
         rtr += "\t\tcurrent_mode = \"%s\";\n" % name_str
-        rtr += "\t\tcurrent_state = state_%s;\n" % self.initState.name
+        rtr += "\t\tcurrent_state = state_%s;\n" % self.initState
         rtr += "\t}\n"
         rtr += "\tcurent_state();\n"
         rtr += "}"
