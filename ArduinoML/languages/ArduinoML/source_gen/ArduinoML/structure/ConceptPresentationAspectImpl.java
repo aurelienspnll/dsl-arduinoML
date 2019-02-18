@@ -10,6 +10,7 @@ import jetbrains.mps.smodel.runtime.ConceptPresentationBuilder;
 
 public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase {
   private ConceptPresentation props_Action;
+  private ConceptPresentation props_ActionSound;
   private ConceptPresentation props_Actuator;
   private ConceptPresentation props_App;
   private ConceptPresentation props_Brick;
@@ -30,6 +31,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_Action = cpb.create();
         }
         return props_Action;
+      case LanguageConceptSwitch.ActionSound:
+        if (props_ActionSound == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByReference(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1086195fL, 0x7c7ea7885c791e11L, "actuator", "", "");
+          props_ActionSound = cpb.create();
+        }
+        return props_ActionSound;
       case LanguageConceptSwitch.Actuator:
         if (props_Actuator == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

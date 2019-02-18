@@ -17,6 +17,7 @@ import jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId;
 
 public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptAction = createDescriptorForAction();
+  /*package*/ final ConceptDescriptor myConceptActionSound = createDescriptorForActionSound();
   /*package*/ final ConceptDescriptor myConceptActuator = createDescriptorForActuator();
   /*package*/ final ConceptDescriptor myConceptApp = createDescriptorForApp();
   /*package*/ final ConceptDescriptor myConceptBrick = createDescriptorForBrick();
@@ -34,7 +35,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptAction, myConceptActuator, myConceptApp, myConceptBrick, myConceptSensor, myConceptSound, myConceptState, myConceptTransition);
+    return Arrays.asList(myConceptAction, myConceptActionSound, myConceptActuator, myConceptApp, myConceptBrick, myConceptSensor, myConceptSound, myConceptState, myConceptTransition);
   }
 
   @Override
@@ -43,6 +44,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     switch (myIndexSwitch.index(id)) {
       case LanguageConceptSwitch.Action:
         return myConceptAction;
+      case LanguageConceptSwitch.ActionSound:
+        return myConceptActionSound;
       case LanguageConceptSwitch.Actuator:
         return myConceptActuator;
       case LanguageConceptSwitch.App:
@@ -78,6 +81,16 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.version(2);
     b.property("status", 0x7c7ea7885c791aacL).type(MetaIdFactory.dataTypeId(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a10861958L)).origin("8970791711877438124").done();
     b.associate("actuator", 0x7c7ea7885c791e11L).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1081bb13L).optional(false).origin("8970791711877438993").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForActionSound() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("ArduinoML", "ActionSound", 0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x6afa8de7fc5aa4dcL);
+    b.class_(false, false, false);
+    b.super_("ArduinoML.structure.Action", 0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1086195fL);
+    b.origin("r:4854ca2b-a3e0-45dd-8ae9-4f6abda320c6(ArduinoML.structure)/7708629739708785884");
+    b.version(2);
+    b.property("lenght", 0x6afa8de7fc5aa4ddL).type(PrimitiveTypeId.INTEGER).origin("7708629739708785885").done();
+    b.property("repeat", 0x6afa8de7fc5aa4dfL).type(PrimitiveTypeId.INTEGER).origin("7708629739708785887").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForActuator() {
@@ -124,6 +137,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:4854ca2b-a3e0-45dd-8ae9-4f6abda320c6(ArduinoML.structure)/8729152039369135152");
     b.version(2);
     b.property("note", 0x79242d87e0f95431L).type(MetaIdFactory.dataTypeId(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x79242d87e0f953faL)).origin("8729152039369135153").done();
+    b.property("repeat", 0x6afa8de7fc584fd9L).type(PrimitiveTypeId.INTEGER).origin("7708629739708633049").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForState() {
@@ -134,6 +148,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.version(2);
     b.aggregate("actions", 0x1b68394a1086195dL).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a1086195fL).optional(true).ordered(true).multiple(true).origin("1974891426869549405").done();
     b.aggregate("notes", 0x79242d87e0fbf5efL).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x79242d87e0f95430L).optional(true).ordered(true).multiple(true).origin("8729152039369307631").done();
+    b.aggregate("bips", 0x6afa8de7fc5b1945L).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x6afa8de7fc5aa4dcL).optional(true).ordered(true).multiple(true).origin("7708629739708815685").done();
     b.aggregate("transition", 0x1b68394a10861961L).target(0x350aa42ef9c440ddL, 0x82b2052371c06126L, 0x1b68394a10861960L).optional(false).ordered(true).multiple(true).origin("1974891426869549409").done();
     return b.create();
   }

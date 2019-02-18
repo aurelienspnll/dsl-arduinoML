@@ -128,6 +128,13 @@
       <property role="20lbJX" value="0..n" />
       <ref role="20lvS9" node="7$$bovwYlgK" resolve="Sound" />
     </node>
+    <node concept="1TJgyj" id="6FUzuvWmL_5" role="1TKVEi">
+      <property role="IQ2ns" value="7708629739708815685" />
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="bips" />
+      <property role="20lbJX" value="0..n" />
+      <ref role="20lvS9" node="6FUzuvWmEjs" resolve="ActionSound" />
+    </node>
     <node concept="1TJgyj" id="1HCekCgxx_x" role="1TKVEi">
       <property role="IQ2ns" value="1974891426869549409" />
       <property role="20lmBu" value="aggregation" />
@@ -237,6 +244,26 @@
       <property role="IQ2nx" value="8729152039369135153" />
       <property role="TrG5h" value="note" />
       <ref role="AX2Wp" node="7$$bovwYlfU" resolve="NOTES" />
+    </node>
+    <node concept="1TJgyi" id="6FUzuvWm4Zp" role="1TKVEl">
+      <property role="IQ2nx" value="7708629739708633049" />
+      <property role="TrG5h" value="repeat" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6FUzuvWmEjs">
+    <property role="EcuMT" value="7708629739708785884" />
+    <property role="TrG5h" value="ActionSound" />
+    <ref role="1TJDcQ" node="1HCekCgxx_v" resolve="Action" />
+    <node concept="1TJgyi" id="6FUzuvWmEjt" role="1TKVEl">
+      <property role="IQ2nx" value="7708629739708785885" />
+      <property role="TrG5h" value="lenght" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+    <node concept="1TJgyi" id="6FUzuvWmEjv" role="1TKVEl">
+      <property role="IQ2nx" value="7708629739708785887" />
+      <property role="TrG5h" value="repeat" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
   </node>
 </model>
