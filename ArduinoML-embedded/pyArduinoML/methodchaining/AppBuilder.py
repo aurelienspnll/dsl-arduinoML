@@ -1,6 +1,7 @@
 from pyArduinoML.model.App import App
 from pyArduinoML.methodchaining.BrickBuilder import BrickBuilder
 from pyArduinoML.methodchaining.StateBuilder import StateBuilder
+from pyArduinoML.methodchaining.ModeBuilder import ModeBuilder
 from pyArduinoML.methodchaining.BrickBuilder import ACTUATOR, SENSOR
 
 
@@ -19,6 +20,7 @@ class AppBuilder:
         self.name = name
         self.bricks = []  # List[BrickBuider], builders for the bricks
         self.states = []  # List[StateBuilder], builders for the states
+        self.modes = [] #List[ModeBuilder], builders for the modes
 
     def actuator(self, actuator):
         """
@@ -51,6 +53,11 @@ class AppBuilder:
         """
         builder = StateBuilder(self, state)
         self.states.append(builder)
+        return builder
+
+    def mode(self, mode):
+        builder = ModeBuilder(self, mode)
+        self.modes.append(builder)
         return builder
 
     def get_contents(self):

@@ -111,7 +111,7 @@ class StateBuilder:
             if t.next_state not in states.keys():
                 raise UndefinedState()
             if isinstance(t, TransitionBuilder):
-                transition = Transition(bricks[t.sensor], t.value, states[t.next_state])
+                transition = Transition(bricks[t.sensor], t.value, states[t.next_state], comparison=t.comparison, read=t.readMode)
             elif isinstance(t, LogicTransitionBuilder):
                 transition = LogicTransition(bricks[t.transition.sensor], t.transition.value, t.type, bricks[t.sensor], t.value, states[t.next_state])
             tmp_transitions += [transition]

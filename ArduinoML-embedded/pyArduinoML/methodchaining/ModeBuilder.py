@@ -17,19 +17,11 @@ class ModeBuilder:
         """
         self.root = root
         self.initState = initState
-        self.actions = []  # List[StateActionBuilder], builders for the state actions
         self.transitions = []  # List[TransitionBuilder], builder for the state transitions
 
-    def set(self, actuator):
-        """
-        Adds an action to the state.
-
-        :param actuator: String, brink the action operates on
-        :return: StateActionBuilder, the builder for the action
-        """
-        action = StateActionBuilder(self, actuator)
-        self.actions = self.actions + [action]
-        return action
+    def init_state(self, state):
+        self.initState = state
+        return self
 
     def when(self, sensor):
         """
@@ -41,3 +33,12 @@ class ModeBuilder:
         transition = TransitionBuilder(self, sensor)
         self.transitions = self.transitions + [transition]
         return transition
+    
+    def go_to_mode(self, mode):
+        for t in self.transitions:
+            if t.next_state == None:
+                t.next_state = mode
+        return self.root
+
+
+    

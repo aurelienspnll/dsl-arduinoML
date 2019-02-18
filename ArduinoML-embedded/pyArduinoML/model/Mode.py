@@ -52,6 +52,7 @@ class Mode(NamedElement):
         """
         rtr = "\tif("
         for t in self.transitions:
+            #if t.nextState is Instance of State raise ERROR
             rtr += t.toArduino()
             """
             elif isinstance(t, LogicTransitionOfTransitions):

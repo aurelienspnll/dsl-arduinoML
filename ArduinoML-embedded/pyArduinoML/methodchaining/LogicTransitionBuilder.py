@@ -10,6 +10,8 @@ class LogicTransitionBuilder:
     Builder for transitions.
     """
 
+    #TODO : ajouter les greater than etc.. ici aussi 
+
     def __init__(self, root, transition, type, sensor):
         """
         Constructor.

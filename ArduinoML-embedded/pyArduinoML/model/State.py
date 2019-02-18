@@ -70,6 +70,7 @@ class State(NamedElement):
         rtr += "\tif ("
         ##TODO : POUR CHAQUES TRANSITIONS PAS BESOINS DE REGARDE LE NEXTSTATE GRACE AUX NOUVEAU TYPE
         for t in self.transitions:
+            #if t.nextState is Instance of MODE raise ERROR
             rtr += t.toArduino()
         rtr += " && guard) {\n\t\ttime = millis();\n\t\tstate_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
                   % (self.transitions[0].nextstate.name, self.name)
