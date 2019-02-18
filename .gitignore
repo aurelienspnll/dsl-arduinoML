@@ -6,3 +6,6 @@
 *.pyc
 
 ArduinoML-embedded/.vscode/*
+ArduinoML-embedded/\.idea/
+
+ArduinoML-embedded/pyArduinoML/\.idea/
