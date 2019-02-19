@@ -1,5 +1,6 @@
 from pyArduinoML.model.State import State
 import types
+import re
 from pyArduinoML.model.Mode import Mode
 from pyArduinoML.model.Transition import Transition
 from pyArduinoML.model.Printer import Printer
@@ -25,6 +26,7 @@ class PrinterBuilder:
         :return:
         """
         self.root = root
+        self.pType = "l" #default value -> plot
         self.timestamp = -1
         self.bricks = []  # List[String] bricks to plot or print
 
@@ -33,6 +35,15 @@ class PrinterBuilder:
         self.bricks.append(brick)
         return self
     
+    def type(self, newType):
+        regexp = r"(text|t|plot|p|line|l)"
+        if(not(re.match(regexp, newType))):
+            raise TypeError()
+        elif(re.match(r"(text|t)", newType)):
+            self.pType = "t"
+        #else : default
+        return self
+
     def interval(self, interval):
         self.timestamp = interval
         return self.root
@@ -41,4 +52,4 @@ class PrinterBuilder:
         for b in self.bricks:
             if b not in bricks.keys():
                 raise UndefinedBrick()
-        return Printer(self.timestamp, self.bricks, )
+        return Printer(self.timestamp, self.pType, self.bricks)

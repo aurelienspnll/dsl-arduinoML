@@ -9,8 +9,9 @@ from pyArduinoML.model.NextStateError import NextStateError
 import SIGNAL
 
 class Printer:
-    def __init__(self, timestamp, bricks=()):
+    def __init__(self, timestamp, type, bricks=()):
         self.bricks = bricks
+        self.type = type
         self.timestamp = timestamp
 
     def setup(self):
@@ -33,7 +34,7 @@ class Printer:
         rtr += "\n\tSerial.print(\"|\");"
         for i in range(len(self.bricks)):
             #l sera le mode a ajouter
-            rtr += "\n\tSerial.print(\"%s,l,\");" % self.bricks[i]
+            rtr += "\n\tSerial.print(\"%s,%s,\");" % (self.bricks[i], self.type)
             rtr += "\n\tSerial.print(value%d);" % i
             rtr += "\n\tSerial.print(\";\");"
         rtr += "\n\tSerial.println(\"\");"
