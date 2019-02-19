@@ -33,10 +33,10 @@ class App(NamedElement):
         rtr += "%s" % ("\n".join(map(lambda b: b.declare(), self.bricks)))
         rtr += "\n"
         if(len(self.modes) > 0):
-            rtr += "\ntypedef void (*GeneralFunction) ();\nGeneralFunction current_state = NULL;\nString current_mode = \"\";\n"
+            rtr += "\ntypedef void (*GeneralFunction) ();\nGeneralFunction current_state = NULL;\nGeneralFunction current_mode_exec = NULL;\nString current_mode = \"\";\n"
         rtr += "\nvoid setup() {\n%s\n" % ("\n".join(map(lambda b: b.setup(), self.bricks)))
         if(len(self.modes) > 0):
-            rtr += "\tcurrent_state = NULL;\n\tcurrent_mode = \"mode_%s\";\n\tmode_%s();\n" % (self.modes[0].name, self.modes[0].name)
+            rtr += "\tcurrent_state = state_%s;\n\tcurrent_mode_exec = mode_%s;\n\tcurrent_mode = \"mode_%s\";\n\tmode_%s();\n" % (self.modes[0].initState, self.modes[0].name, self.modes[0].name, self.modes[0].name)
         rtr += "}"
         rtr += "\n\nint state = LOW; int prev = HIGH;\nlong time = 0; long debounce = 200;\n\n"
         rtr += "%s" % ("\n".join(map(lambda m: m.setup(), self.modes)))
@@ -44,6 +44,7 @@ class App(NamedElement):
         if(len(self.modes) > 0):
             rtr += "%s" % ("\n".join(map(lambda s: s.setup_with_modes(), self.states)))
             rtr += "\nvoid loop() {\n %s" % ("\n".join(map(lambda m: m.setupTransition(), self.modes)))
+            rtr += "\n\tcurrent_mode_exec();"
             rtr += "\n}"
         else :    
             rtr += "%s" % ("\n".join(map(lambda s: s.setup(), self.states)))

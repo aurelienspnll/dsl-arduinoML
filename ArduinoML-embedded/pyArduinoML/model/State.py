@@ -73,7 +73,7 @@ class State(NamedElement):
 
     def setup_with_modes(self):
         rtr = self.sub_setup()
-        rtr += " && guard) {\n\t\ttime = millis();\n\t\tcurrent_state = state_%s();\n\t}" \
+        rtr += " && guard) {\n\t\ttime = millis();\n\t\tcurrent_state = state_%s;\n\t}" \
                   % (self.transitions[0].nextstate.name)
         #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
         # end of state

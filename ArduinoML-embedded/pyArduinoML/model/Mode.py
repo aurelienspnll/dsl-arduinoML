@@ -40,7 +40,7 @@ class Mode(NamedElement):
         rtr += "\t\tcurrent_mode = \"%s\";\n" % name_str
         rtr += "\t\tcurrent_state = state_%s;\n" % self.initState
         rtr += "\t}\n"
-        rtr += "\tcurent_state();\n"
+        rtr += "\tcurrent_state();\n"
         rtr += "}\n"
         return rtr
 
@@ -54,7 +54,7 @@ class Mode(NamedElement):
         for t in self.transitions:
             #if t.nextState is Instance of State raise ERROR
             rtr += t.toArduino()
-        rtr += ") {\n\t\tmode_%s();\n\t}" % (self.transitions[0].nextstate.name)
+        rtr += " && current_mode == \"mode_%s\") {\n\t\tcurrent_mode_exec = mode_%s;\n\t}" % (self.name, self.transitions[0].nextstate.name)
         #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
         # end of state
         return rtr

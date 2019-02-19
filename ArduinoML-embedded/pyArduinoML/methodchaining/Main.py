@@ -132,7 +132,7 @@ def signaling_stuff_using_sounds():
             .when("BUTTON").has_value(HIGH).go_to_state("step_one") \
         .state("step_one") \
             .set("BUZZER").to_emit_sound_for_ms(300).repeat(3) \
-            .when("BUTTON").greater_than(HIGH).go_to_state("step_two") \
+            .when("BUTTON").has_value(HIGH).go_to_state("step_two") \
         .state("step_two") \
             .set("BUZZER").to_emit_sound_for_ms(1000).repeat(1) \
             .when("BUTTON").has_value(HIGH).go_to_state("init") \
@@ -187,11 +187,11 @@ if __name__ == '__main__':
     print("----------------- MULTI-STATE ALARM -------------------")
     print("-------------------------------------------------------\n\n")
     multi_state_alarm() #OK
+    '''
     print("\n\n-------------------------------------------------------")
     print("----------- SINGNALING STUFF USING SOUNDS -------------")
     print("-------------------------------------------------------\n\n")
     signaling_stuff_using_sounds()
-    '''
     print("\n\n-------------------------------------------------------")
     print("------------------- MODE SCENARIO ---------------------")
     print("-------------------------------------------------------\n\n")
