@@ -34,7 +34,7 @@ class App(NamedElement):
         rtr += "\n"
         if(self.printer != None):
             rtr += "\nString current_state_string = \"\";\n"
-            rtr += "long previousMillis = 0;\nlong interval = %s;\nfloat timestamp = 0.0;" % self.printer.timestamp
+            rtr += "long previousMillis = 0;\nlong interval = %s;\t//ms\nfloat timestamp = 0.0;" % self.printer.timestamp
         if(len(self.modes) > 0):
             rtr += "\ntypedef void (*GeneralFunction) ();\nGeneralFunction current_state = NULL;\nGeneralFunction current_mode_exec = NULL;\nString current_mode = \"\";\n"
         rtr += "\nvoid setup() {\n%s\n" % ("\n".join(map(lambda b: b.setup(), self.bricks)))

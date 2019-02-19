@@ -193,7 +193,7 @@ def mode_scenario_with_printer():
         .state("off") \
             .set("LED").to(LOW) \
             .when("BUTTON").has_value(HIGH).go_to_state("on") \
-        .printer().add_brick("SENSOR").interval(100) \
+        .printer().add_brick("SENSOR").interval(200) \
         .get_contents()
     print(app)
 
