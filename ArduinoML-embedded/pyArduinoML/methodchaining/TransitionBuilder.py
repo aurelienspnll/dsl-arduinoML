@@ -20,6 +20,8 @@ class TransitionBuilder:
         self.sensor = sensor
         self.value = None  # SIGNAL, state of the brick to trigger the transition
         self.next_state = None  # String, name of the target state
+        self.readMode = "digital"
+        self.comparison = "=="
 
     def has_value(self, value):
         """
@@ -30,6 +32,31 @@ class TransitionBuilder:
         """
         self.value = value
         return self.root
+
+    def greater_than(self, value):
+        self.comparison = ">"
+        self.value = value
+        return self.root
+
+    def greater_than_or_equals(self, value):
+        self.comparison = ">="
+        self.value = value
+        return self.root
+    
+    def lesser_than(self, value):
+        self.comparison = "<"
+        self.value = value
+        return self.root
+    
+    def lesser_than_or_equals(self, value):
+        self.comparison = "<="
+        self.value = value
+        return self.root
+
+    def read_mode(self, mode):
+        self.readMode = mode
+        return self
+    
 
     '''
     def go_to_state(self, next_state):
@@ -59,4 +86,11 @@ class TransitionBuilder:
             raise UndefinedBrick()
         if self.next_state not in states.keys():
             raise UndefinedState()
-        return Transition(bricks[self.sensor], self.value, states[self.next_state])
+        if self.comparison != None and self.read_mode != None:
+            return Transition(bricks[self.sensor], self.value, states[self.next_state], comparison=self.comparison, read=self.read_mode)
+        elif self.comparison != None:
+            return Transition(bricks[self.sensor], self.value, states[self.next_state], comparison=self.comparison)
+        elif  self.read_mode != None:
+            return Transition(bricks[self.sensor], self.value, states[self.next_state], read=self.read_mode)
+        else:
+            return Transition(bricks[self.sensor], self.value, states[self.next_state])

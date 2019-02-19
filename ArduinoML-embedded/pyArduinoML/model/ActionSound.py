@@ -1,4 +1,4 @@
-from Action import Action
+from pyArduinoML.model.Action import Action
 
 class ActionSound(Action):
 

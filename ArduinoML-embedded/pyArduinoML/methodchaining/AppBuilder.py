@@ -1,6 +1,8 @@
 from pyArduinoML.model.App import App
 from pyArduinoML.methodchaining.BrickBuilder import BrickBuilder
 from pyArduinoML.methodchaining.StateBuilder import StateBuilder
+from pyArduinoML.methodchaining.PrinterBuilder import PrinterBuilder
+from pyArduinoML.methodchaining.ModeBuilder import ModeBuilder
 from pyArduinoML.methodchaining.BrickBuilder import ACTUATOR, SENSOR
 
 
@@ -19,6 +21,8 @@ class AppBuilder:
         self.name = name
         self.bricks = []  # List[BrickBuider], builders for the bricks
         self.states = []  # List[StateBuilder], builders for the states
+        self.modes = [] #List[ModeBuilder], builders for the modes
+        self.brickPrinter = None
 
     def actuator(self, actuator):
         """
@@ -53,6 +57,20 @@ class AppBuilder:
         self.states.append(builder)
         return builder
 
+    def mode(self, mode):
+        builder = ModeBuilder(self, mode)
+        self.modes.append(builder)
+        return builder
+
+    def printer(self):
+        if(self.brickPrinter == None):
+            builder = PrinterBuilder(self)
+            self.brickPrinter = builder
+            return builder
+        else : 
+            raise Exception() #We have already a printer
+
+
     def get_contents(self):
         """
         Builds the app.
@@ -77,5 +95,20 @@ class AppBuilder:
         # build the transitions (2-step pass due to the meta-model)
         for builder in self.states:
             builder.get_contents2(bricks, states)
+        # build the modes
+        modes = {} # Map[String, Mode]
+        mode_names = [] # List[String]
+        mode_values = [] # List[Mode]
+        for builder in self.modes:
+            mode = builder.get_contents()
+            modes[mode.name] = mode
+            mode_names += [state.name]
+            mode_values += [mode]
+        for builder in self.modes:
+            builder.get_contents2(bricks, states, modes)
+        printer = None
+        if(self.brickPrinter != None):
+            printer = self.brickPrinter.get_contents(bricks)
+        #print(mode_values[0].transitions)
         # build the app
-        return App(self.name, bricks.values(), state_values)
+        return App(self.name, bricks.values(), state_values, mode_values, printer)

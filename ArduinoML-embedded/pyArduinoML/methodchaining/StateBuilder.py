@@ -1,6 +1,6 @@
 from pyArduinoML.model.State import State
 from pyArduinoML.model.Transition import Transition
-from pyArduinoML.model.transition.LogicTransition import LogicTransition
+from pyArduinoML.model.LogicTransition import LogicTransition
 from pyArduinoML.model.transition.TransitionType import AND, OR
 from pyArduinoML.methodchaining.TransitionBuilder import TransitionBuilder
 from pyArduinoML.methodchaining.LogicTransitionBuilder import LogicTransitionBuilder
@@ -102,16 +102,16 @@ class StateBuilder:
         A 2-step build is required (due to the meta-model) to get references right while avoiding bad typing tricks
         such as passing a TransitionBuilder instead of a Transition.
         """
+        if self.state not in states.keys():
+            raise UndefinedState()
         tmp_transitions = []
         for t in self.transitions:
             if t.sensor not in bricks.keys():
                 raise UndefinedBrick()
-            if self.state not in states.keys():
-                raise UndefinedState()
             if t.next_state not in states.keys():
                 raise UndefinedState()
             if isinstance(t, TransitionBuilder):
-                transition = Transition(bricks[t.sensor], t.value, states[t.next_state])
+                transition = Transition(bricks[t.sensor], t.value, states[t.next_state], comparison=t.comparison, read=t.readMode)
             elif isinstance(t, LogicTransitionBuilder):
                 transition = LogicTransition(bricks[t.transition.sensor], t.transition.value, t.type, bricks[t.sensor], t.value, states[t.next_state])
             tmp_transitions += [transition]

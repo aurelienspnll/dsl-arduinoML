@@ -1,9 +1,11 @@
 from pyArduinoML.model.NamedElement import NamedElement
 from pyArduinoML.model.Transition import Transition
 from pyArduinoML.model.ActionSound import ActionSound
-from pyArduinoML.model.transition.LogicTransition import *
+from pyArduinoML.model.LogicTransition import *
+from pyArduinoML.model.Mode import Mode
 from pyArduinoML.model.transition.LogicTransitionOfTransitions import LogicTransitionOfTransitions
 from pyArduinoML.model.transition.LogicTransitionOfSensorAndTransitions import LogicTransitionOfSensorAndTransitions
+from pyArduinoML.model.NextStateError import NextStateError
 import SIGNAL
 
 class State(NamedElement):
@@ -41,13 +43,8 @@ class State(NamedElement):
         :return:
         """
         self.transitions.append(transition)
-
-    def setup(self):
-        """
-        Arduino code for the state.
-
-        :return: String
-        """
+    
+    def sub_setup(self, isPrinter):
         rtr = ""
         rtr += "void state_%s() {\n" % self.name
         # generate code for state actions
@@ -64,22 +61,35 @@ class State(NamedElement):
                 rtr += "\tdigitalWrite(%s, %s);\n" % (action.brick.name, SIGNAL.value(action.value))
 
         rtr += "\tboolean guard =  millis() - time > debounce;\n"
+        if(isPrinter):
+            rtr += "\tcurrent_state_string = \"%s\";\n" % self.name
 
 
         # generate code for the transition
         rtr += "\tif ("
-        ##TODO : POUR CHAQUES TRANSITIONS PAS BESOINS DE REGARDE LE NEXTSTATE GRACE AUX NOUVEAU TYPE
-        for t in self.transitions:
-            if isinstance(t, Transition): #Regular case -> only one transition here. transiton.len() == 1
-                rtr += "digitalRead(%s) == %s" % (t.sensor.name, SIGNAL.value(t.value))
-            elif isinstance(t, LogicTransition):
-                rtr += t.toArduino()
-            elif isinstance(t, LogicTransitionOfTransitions):
-                rtr += recursion(t)
-            elif isinstance(t, LogicTransitionOfSensorAndTransitions):
-                rtr += recursion(t)
-        #print(self.transitions)
-        rtr += " && guard) {\n\t\ttime = millis(); state_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
+        for t in self.transitions: #TODO :generation pour multiple transition...
+            if(isinstance(t.nextstate, Mode)):
+                raise NextStateError()
+            rtr += t.toArduino()
+        return rtr
+
+    def setup_with_modes(self, isPrinter):
+        rtr = self.sub_setup(isPrinter)
+        rtr += " && guard) {\n\t\ttime = millis();\n\t\tcurrent_state = state_%s;\n\t}" \
+                  % (self.transitions[0].nextstate.name)
+        #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
+        # end of state
+        rtr += "\n}\n"
+        return rtr
+
+    def setup(self, isPrinter):
+        """
+        Arduino code for the state.
+
+        :return: String
+        """
+        rtr = self.sub_setup(isPrinter)
+        rtr += " && guard) {\n\t\ttime = millis();\n\t\tstate_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
                   % (self.transitions[0].nextstate.name, self.name)
         #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
         # end of state
