@@ -44,7 +44,7 @@ class State(NamedElement):
         """
         self.transitions.append(transition)
     
-    def sub_setup(self):
+    def sub_setup(self, isPrinter):
         rtr = ""
         rtr += "void state_%s() {\n" % self.name
         # generate code for state actions
@@ -61,6 +61,8 @@ class State(NamedElement):
                 rtr += "\tdigitalWrite(%s, %s);\n" % (action.brick.name, SIGNAL.value(action.value))
 
         rtr += "\tboolean guard =  millis() - time > debounce;\n"
+        if(isPrinter):
+            rtr += "\tcurrent_state_string = \"%s\";\n" % self.name
 
 
         # generate code for the transition
@@ -71,8 +73,8 @@ class State(NamedElement):
             rtr += t.toArduino()
         return rtr
 
-    def setup_with_modes(self):
-        rtr = self.sub_setup()
+    def setup_with_modes(self, isPrinter):
+        rtr = self.sub_setup(isPrinter)
         rtr += " && guard) {\n\t\ttime = millis();\n\t\tcurrent_state = state_%s;\n\t}" \
                   % (self.transitions[0].nextstate.name)
         #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if
@@ -80,13 +82,13 @@ class State(NamedElement):
         rtr += "\n}\n"
         return rtr
 
-    def setup(self):
+    def setup(self, isPrinter):
         """
         Arduino code for the state.
 
         :return: String
         """
-        rtr = self.sub_setup()
+        rtr = self.sub_setup(isPrinter)
         rtr += " && guard) {\n\t\ttime = millis();\n\t\tstate_%s();\n\t} else {\n\t\tstate_%s();\n\t}" \
                   % (self.transitions[0].nextstate.name, self.name)
         #penser quand on aura du multi-transactionel et donc pas forcement de else mais plusieurs if

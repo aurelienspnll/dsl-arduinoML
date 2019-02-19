@@ -165,6 +165,7 @@ def mode_scenario():
         .state("off") \
             .set("LED").to(LOW) \
             .when("BUTTON").has_value(HIGH).go_to_state("on") \
+        .printer().add_brick("BUTTON").add_brick("LED").interval(100) \
         .get_contents()
     print(app)
 
