@@ -127,8 +127,6 @@ def signaling_stuff_using_sounds():
     app = AppBuilder("Switch!") \
         .sensor("BUTTON").on_pin(9) \
         .actuator("BUZZER").on_pin(11) \
-        .mode("test") \
-            .init_state("init").when("BUTTON").has_value(HIGH).go_to_mode("test") \
         .state("init") \
             .set("BUZZER").to(LOW) \
             .when("BUTTON").has_value(HIGH).go_to_state("step_one") \
@@ -168,7 +166,6 @@ def test_mode():
             .set("BUZZER").to_emit_sound_for_ms(1000).repeat(1) \
             .when("BUTTON").has_value(HIGH).go_to_state("init") \
         .get_contents()
-    
     print(app)
 
 

@@ -41,8 +41,13 @@ class App(NamedElement):
         rtr += "\n\nint state = LOW; int prev = HIGH;\nlong time = 0; long debounce = 200;\n\n"
         rtr += "%s" % ("\n".join(map(lambda m: m.setup(), self.modes)))
         rtr += "\n\n"
-        rtr += "%s" % ("\n".join(map(lambda s: s.setup(), self.states)))
-        rtr += "\nvoid loop() {\n\t state_%s(); \n}" % self.states[0].name #A Modifier avec les modes
-        rtr += "\n\n\n------ TEST ------\n\n\n %s" % ("\n".join(map(lambda m: m.setupTransition(), self.modes)))
+        if(len(self.modes) > 0):
+            rtr += "%s" % ("\n".join(map(lambda s: s.setup_with_modes(), self.states)))
+            rtr += "\nvoid loop() {\n %s" % ("\n".join(map(lambda m: m.setupTransition(), self.modes)))
+            rtr += "\n}"
+        else :    
+            rtr += "%s" % ("\n".join(map(lambda s: s.setup(), self.states)))
+            rtr += "\nvoid loop() {\n\t state_%s(); \n}" % self.states[0].name #A Modifier avec les modes
+        #rtr += "\n\n\n------ TEST ------\n\n\n %s" % ("\n".join(map(lambda m: m.setupTransition(), self.modes)))
         return rtr
         

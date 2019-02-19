@@ -60,7 +60,7 @@ class ModeBuilder:
             if t.sensor not in bricks.keys():
                 raise UndefinedBrick()
             if t.next_state not in modes.keys():
-                raise UndefinedState()
+                raise UndefinedMode()
             if isinstance(t, TransitionBuilder):
                 transition = Transition(bricks[t.sensor], t.value, modes[t.next_state], comparison=t.comparison, read=t.readMode)
             elif isinstance(t, LogicTransitionBuilder): #A REVOIR
