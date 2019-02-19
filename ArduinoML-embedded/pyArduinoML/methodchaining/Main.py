@@ -140,7 +140,7 @@ def signaling_stuff_using_sounds():
     
     print(app)
 
-def test_mode():
+def mode_scenario():
     """
     Direct use of the DSL.
     + : auto-completion (limited due to python typing system)
@@ -153,46 +153,46 @@ def test_mode():
 
     app = AppBuilder("Switch!") \
         .sensor("BUTTON").on_pin(9) \
-        .actuator("BUZZER").on_pin(11) \
-        .mode("test") \
-            .init_state("init").when("BUTTON").has_value(HIGH).go_to_mode("test") \
-        .state("init") \
-            .set("BUZZER").to(LOW) \
-            .when("BUTTON").has_value(HIGH).go_to_state("step_one") \
-        .state("step_one") \
-            .set("BUZZER").to_emit_sound_for_ms(300).repeat(3) \
-            .when("BUTTON").greater_than(HIGH).go_to_state("step_two") \
-        .state("step_two") \
-            .set("BUZZER").to_emit_sound_for_ms(1000).repeat(1) \
-            .when("BUTTON").has_value(HIGH).go_to_state("init") \
+        .actuator("LED").on_pin(12) \
+        .sensor("SENSOR").on_pin("A2") \
+        .mode("jour") \
+            .init_state("off").when("SENSOR").read_mode("analog").lesser_than(400).go_to_mode("nuit") \
+        .mode("nuit") \
+            .init_state("on").when("SENSOR").read_mode("analog").greater_than(400).go_to_mode("jour") \
+        .state("on") \
+            .set("LED").to(HIGH) \
+            .when("BUTTON").has_value(HIGH).go_to_state("off") \
+        .state("off") \
+            .set("LED").to(LOW) \
+            .when("BUTTON").has_value(HIGH).go_to_state("on") \
         .get_contents()
     print(app)
 
 
 if __name__ == '__main__':
     '''
-    print("\n\n-----------------------------------------——------------")
+    print("\n\n-------------------------------------------------------")
     print("------------------ VERY SIMPLE ALARM ------------------")
-    print("-----------------------------------------——------------\n\n")
+    print("-------------------------------------------------------\n\n")
     very_simple_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
+    print("\n\n-------------------------------------------------------")
     print("------------------ DUAL CHECK ALARM -------------------")
-    print("-----------------------------------------——------------\n\n")
+    print("-------------------------------------------------------\n\n")
     dual_check_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
+    print("\n\n-------------------------------------------------------")
     print("------------------ STATE-BASED ALARM ------------------")
-    print("-----------------------------------------——------------\n\n")
+    print("-------------------------------------------------------\n\n")
     state_based_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
+    print("\n\n-------------------------------------------------------")
     print("----------------- MULTI-STATE ALARM -------------------")
-    print("-----------------------------------------——------------\n\n")
+    print("-------------------------------------------------------\n\n")
     multi_state_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
+    print("\n\n-------------------------------------------------------")
     print("----------- SINGNALING STUFF USING SOUNDS -------------")
-    print("-----------------------------------------——------------\n\n")
+    print("-------------------------------------------------------\n\n")
     signaling_stuff_using_sounds()
     '''
-    print("\n\n-----------------------------------------——------------")
-    print("----------------------- TEST --------------------------")
-    print("-----------------------------------------——------------\n\n")
-    test_mode()
+    print("\n\n-------------------------------------------------------")
+    print("------------------- MODE SCENARIO ---------------------")
+    print("-------------------------------------------------------\n\n")
+    mode_scenario()

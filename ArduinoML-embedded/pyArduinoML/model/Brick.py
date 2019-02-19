@@ -23,4 +23,4 @@ class Brick(NamedElement):
 
         :return: String
         """
-        return "int %s = %d;" % (self.name, self.pin)
+        return "int %s = %s;" % (self.name, self.pin)
