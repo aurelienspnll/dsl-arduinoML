@@ -1,5 +1,5 @@
 from pyArduinoML.model.Transition import Transition
-from pyArduinoML.model.transition.LogicTransition import LogicTransition
+from pyArduinoML.model.LogicTransition import LogicTransition
 from pyArduinoML.model.transition.TransitionType import AND, OR
 from pyArduinoML.methodchaining.UndefinedBrick import UndefinedBrick
 from pyArduinoML.methodchaining.UndefinedState import UndefinedState
@@ -9,6 +9,8 @@ class LogicTransitionBuilder:
     """
     Builder for transitions.
     """
+
+    #TODO : ajouter les greater than etc.. ici aussi 
 
     def __init__(self, root, transition, type, sensor):
         """

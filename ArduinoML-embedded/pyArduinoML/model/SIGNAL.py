@@ -16,4 +16,4 @@ def value(signal):
         return "LOW"
     if signal == HIGH:
         return "HIGH"
-    return ""
+    return signal #else return string

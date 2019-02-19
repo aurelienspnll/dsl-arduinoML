@@ -140,26 +140,60 @@ def signaling_stuff_using_sounds():
     
     print(app)
 
+def mode_scenario():
+    """
+    Direct use of the DSL.
+    + : auto-completion (limited due to python typing system)
+    - : verbose, Python syntax requires '\' to cut lines.
+
+    :return:
+    """
+    from pyArduinoML.methodchaining.AppBuilder import AppBuilder
+    from pyArduinoML.model.SIGNAL import HIGH, LOW
+
+    app = AppBuilder("Switch!") \
+        .sensor("BUTTON").on_pin(9) \
+        .actuator("LED").on_pin(12) \
+        .sensor("SENSOR").on_pin("A2") \
+        .mode("jour") \
+            .init_state("off").when("SENSOR").read_mode("analog").lesser_than(400).go_to_mode("nuit") \
+        .mode("nuit") \
+            .init_state("on").when("SENSOR").read_mode("analog").greater_than(400).go_to_mode("jour") \
+        .state("on") \
+            .set("LED").to(HIGH) \
+            .when("BUTTON").has_value(HIGH).go_to_state("off") \
+        .state("off") \
+            .set("LED").to(LOW) \
+            .when("BUTTON").has_value(HIGH).go_to_state("on") \
+        .printer().add_brick("BUTTON").add_brick("LED").interval(100) \
+        .get_contents()
+    print(app)
+
 
 if __name__ == '__main__':
-    print("\n\n-----------------------------------------——------------")
-    print("-------------------- VERY SIMPLE ALARM ---------------------")
-    print("-----------------------------------------——------------\n\n")
+    '''
+    print("\n\n-------------------------------------------------------")
+    print("------------------ VERY SIMPLE ALARM ------------------")
+    print("-------------------------------------------------------\n\n")
     very_simple_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
-    print("-------------------- DUAL CHECK ALARM ----------------------")
-    print("-----------------------------------------——------------\n\n")
+    print("\n\n-------------------------------------------------------")
+    print("------------------ DUAL CHECK ALARM -------------------")
+    print("-------------------------------------------------------\n\n")
     dual_check_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
-    print("-------------------- STATE-BASED ALARM ---------------------")
-    print("-----------------------------------------——------------\n\n")
+    print("\n\n-------------------------------------------------------")
+    print("------------------ STATE-BASED ALARM ------------------")
+    print("-------------------------------------------------------\n\n")
     state_based_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
-    print("-------------------- MULTI-STATE ALARM ---------------------")
-    print("-----------------------------------------——------------\n\n")
+    print("\n\n-------------------------------------------------------")
+    print("----------------- MULTI-STATE ALARM -------------------")
+    print("-------------------------------------------------------\n\n")
     multi_state_alarm() #OK
-    print("\n\n-----------------------------------------——------------")
+    '''
+    print("\n\n-------------------------------------------------------")
     print("----------- SINGNALING STUFF USING SOUNDS -------------")
-    print("-----------------------------------------——------------\n\n")
+    print("-------------------------------------------------------\n\n")
     signaling_stuff_using_sounds()
-
+    print("\n\n-------------------------------------------------------")
+    print("------------------- MODE SCENARIO ---------------------")
+    print("-------------------------------------------------------\n\n")
+    mode_scenario()
