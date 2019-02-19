@@ -5,6 +5,7 @@
 # sudo pip3 install pyserial
 # python3 plot.py
 
+import sys
 import time
 import serial
 from matplotlib import pyplot as plt
@@ -50,8 +51,19 @@ def createElement(type, name, plt):
 
 
 # Set variables
-serialPort = '/dev/ttyACM0'
-baudRate = 9600
+argvLen = len(sys.argv)
+if argvLen == 1:
+    serialPort = '/dev/ttyACM0'
+    baudRate = 9600
+elif argvLen == 3:
+    serialPort = sys.argv[1]
+    baudRate = int(sys.argv[2])
+else:
+    sys.exit('\nUsage: python plot.py serialPort(Default=\'/dev/ttyACM0\') baudRate(Default=9600)\n')
+
+print("Serial port: " + serialPort)
+print("Baud rate: " + str(baudRate))
+
 plotElementsList = {}
 modeLabel = "Mode"
 stateLabel = "State"
@@ -95,10 +107,11 @@ time.sleep(0.1)                 #  a little sleep time so buffer gets properly f
 while True :
     serialConnection.reset_input_buffer()
     data = serialConnection.readline().decode('utf-8').replace("\r\n", "")      # m:nuit,s:off|1.00|SENSOR,l,185;temp,l,235;light,t,285
+    data = data[:-1]    # remove last ";"
 
     # sometimes the incoming data is garbage, so just 'try' to do this
     try:
-        #print(data)
+        print(data)
         values = data.split('|')
 
         # Set text for mode and state
